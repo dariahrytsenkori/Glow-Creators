@@ -1,0 +1,333 @@
+/* =========================================
+   1. ЗАГАЛЬНІ НАЛАШТУВАННЯ (Основа сторінки)
+   ========================================= */
+body {
+    margin: 0;                     /* Прибирає зайві відступи браузера */
+    padding: 0;                    /* Прибирає внутрішні відступи браузера */
+    font-family: 'Inter', sans-serif; /* Твій шрифт з макета */
+    background-color: #FFFFFF;     /* Основний фон (білий) */
+}
+
+.layout-container {
+    display: flex;                 /* Ставить сайдбар і контент поруч */
+    min-height: 100vh;             /* Розтягує сторінку на всю висоту екрана */
+}
+
+/* =========================================
+   2. САЙДБАР (Ліве бордове меню)
+   ========================================= */
+.sidebar {
+    background-color: #612A26;     
+    width: 400px;                  /* Адекватна ширина сайдбару (було 650) */
+    padding-top: 10px;             /* Відступ від верху до стрілочки */
+    padding-left: 13px;           
+    padding-right: 40px;           /* Відступ справа, щоб текст не лип до краю */
+    display: flex;
+    flex-direction: column;        /* Елементи стоять один під одним */
+    flex-shrink: 0;                /* Не дає сайдбару стискатись */
+    color: #EEE4E0;                /* Колір тексту (світлий) */
+    box-sizing: border-box;        /* Щоб padding не роздував ширину */
+}
+
+.back-arrow {
+    padding: 20px;
+}
+
+.back-arrow svg {
+    
+    width:28 px;
+    height: 48px;
+}
+
+/* =========================================
+   3. ПРОФІЛЬ (Аватарка та імена)
+   ========================================= */
+.user-profile {
+    display: flex;
+    flex-direction: row;           /* Фото та імена стоять в ряд */
+    align-items: center;           /* Центрує їх по вертикалі */
+    gap: 40px;                     /* Відстань між колом та текстом */
+    margin-bottom: 60px;           /* Відступ від профілю до меню */
+    margin-left: 25px;
+}
+
+.avatar-circle {
+    width: 95px;                  /* Розмір твого кола з макета */
+    height: 95px;                 /* Має бути таким само, як ширина */
+    border-radius: 50%;            /* Робить коло круглим */
+    background: linear-gradient(90deg, #EEE4E0 0%, #F7F1EF 50%, #EEE4E0 100%); /* Градієнт */
+    position: relative;            /* Треба для корони */
+}
+
+.crown-icon{
+   position: absolute;
+    width: 28px;
+    height: 28px;
+    bottom: 5px;
+    right: 5px;
+}
+
+
+
+
+.user-names {
+    display: flex;
+    flex-direction: column;        /* Ім'я над прізвищем */
+    gap: 8px;                     /* Відстань між ім'ям та прізвищем */
+    font-weight: 300;
+    letter-spacing: 0.3px;
+}
+
+.user-names span {
+    font-size: 22px;               /* Розмір шрифту з Typography */
+    border-bottom: 1px solid #FFF; /* Біла лінія під ім'ям */
+    padding-bottom: 1.8px;           /* Відступ тексту від лінії */
+   
+}
+
+
+/* =========================================
+   4. МЕНЮ (Навігація)
+   ========================================= */
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-left: 30px;
+
+}
+
+.nav-link {
+    font-size: 22px;
+    color: #EEE4E0;
+    text-decoration: none;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+
+    transform: translateX(-3px);
+
+    white-space: nowrap;
+}
+
+.nav-link svg {
+   margin-left:10 ;
+    width: 35px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+.nav-link.active {
+    text-decoration: underline;    /* Підкреслення для "Мій акаунт" */
+}
+
+
+/* =========================================
+   5. ГОЛОВНИЙ КОНТЕНТ (Права частина)
+   ========================================= */
+.main-content {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрує всі картки рівно по горизонталі */
+    padding: 50px 40px;  /* Відступи від країв екрану */
+    background-color: #FFFFFF;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* =========================================
+   СТОРІНКА НАЛАШТУВАНЬ (Розмітка карток)
+   ========================================= */
+
+/* Контейнер, який тримає всі блоки налаштувань по центру */
+.settings-wrapper {
+    width: 100%;
+    max-width: 950px; /* 👈 ОСЬ ТУТ ШИРИНА КАРТОК (можеш ставити хоч 1000px) */
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Відстань між окремими блоками */
+}
+
+/* Рамка для кожного окремого блоку налаштувань */
+.settings-card {
+    width: 100%;
+    background: #FFFFFF;
+    border: 1.4px solid #612A26; /* Бордова рамка */
+    border-radius: 12px;
+    padding: 30px 40px; /* Внутрішні відступи від рамки до тексту */
+    box-sizing: border-box;
+}
+
+.settings-card h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px; /* Розмір заголовка блоку */
+    font-weight: 600;
+    color: #111111;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Головний заголовок сторінки (Налаштування, Мої бронювання) */
+.page-title {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;      
+    font-size: 32px;       
+    color: #111111;
+    margin-top: 0px;       
+    margin-bottom: 25px;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 950px; /* Має співпадати з шириною settings-wrapper */
+}
+
+/* =========================================
+   ЕЛЕМЕНТИ НАЛАШТУВАНЬ (Списки, чекбокси)
+   ========================================= */
+.settings-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05); /* Легка сіра лінія між пунктами */
+}
+
+.settings-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.settings-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.settings-text strong {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+}
+
+.settings-text span {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #888;
+}
+
+/* Круглі галочки */
+.custom-checkbox {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-left: 20px;
+}
+
+.custom-checkbox input {
+    opacity: 0; width: 0; height: 0; position: absolute;
+}
+
+.checkmark {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    border: 1.5px solid #111; border-radius: 50%; transition: 0.2s;
+}
+
+.custom-checkbox input:checked ~ .checkmark::after {
+    content: ""; 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    width: 5px; 
+    height: 10px;
+    border: solid #111; 
+    border-width: 0 1.5px 1.5px 0; 
+    /* Магія ідеального центрування: */
+    transform: translate(-50%, -60%) rotate(45deg);
+}
+
+/* Випадаючі списки (Мова та Час) */
+.settings-select-group {
+    margin-bottom: 15px; width: 100%;
+}
+
+.settings-select-group label {
+    font-family: 'Inter', sans-serif; font-size: 12px; color: #888; margin-bottom: 8px; display: block;
+}
+
+.settings-select {
+    width: 100%; padding: 12px 15px; border: 1px solid #612A26; border-radius: 8px;
+    font-family: 'Inter', sans-serif; font-size: 14px; color: #111; outline: none; appearance: none;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") no-repeat right 15px center; background-size: 16px; cursor: pointer;
+}
+
+/* Кнопки дій з акаунтом */
+.action-item { cursor: pointer; transition: opacity 0.2s; }
+.action-item:hover { opacity: 0.6; }
+.action-item.danger strong { color: rgba(97, 42, 38, 1); }
+
+/* =========================================
+   МОДАЛЬНІ ВІКНА (Спливаючі віконця)
+   ========================================= */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000;
+    opacity: 0; visibility: hidden; transition: 0.3s;
+}
+
+.modal-overlay.active { opacity: 1; visibility: visible; }
+
+.modal-close {
+    position: absolute; top: 15px; right: 20px;
+    font-size: 30px; color: #888;
+    cursor: pointer; border: none; background: none;
+}
+
+.modal-close:hover { color: #111; }
+
+.modal-card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 30px 25px;
+    width: 100%;
+    max-width: 390px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.modal-card h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 26px;
+    font-weight: 400;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-input {
+    width: 100%; height: 40px; margin-bottom: 12px;
+    border: 1px solid #612A26; border-radius: 10px; padding: 0 15px;
+    font-family: 'Inter', sans-serif; font-size: 14px; outline: none;
+    box-sizing: border-box;
+}
+
+.modal-btn {
+    width: 100%; height: 40px; margin-top: 10px;
+    background-color: #612A26; color: #fff; border: none; border-radius: 10px;
+    font-family: 'Inter', sans-serif; font-size: 16px; cursor: pointer;
+}

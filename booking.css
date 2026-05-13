@@ -1,0 +1,354 @@
+/* =========================================
+   1. ЗАГАЛЬНІ НАЛАШТУВАННЯ (Основа сторінки)
+   ========================================= */
+body {
+    margin: 0;                     /* Прибирає зайві відступи браузера */
+    padding: 0;                    /* Прибирає внутрішні відступи браузера */
+    font-family: 'Inter', sans-serif; /* Твій шрифт з макета */
+    background-color: #FFFFFF;     /* Основний фон (білий) */
+}
+
+.layout-container {
+    display: flex;                 /* Ставить сайдбар і контент поруч */
+    min-height: 100vh;             /* Розтягує сторінку на всю висоту екрана */
+}
+
+/* =========================================
+   2. САЙДБАР (Ліве бордове меню)
+   ========================================= */
+.sidebar {
+    background-color: #612A26;     /* Твій бордовий колір з Fill */
+    width: 400px;                  /* Адекватна ширина сайдбару (було 650) */
+    padding-top: 10px;             /* Відступ від верху до стрілочки */
+    padding-left: 13px;           
+    padding-right: 40px;           /* Відступ справа, щоб текст не лип до краю */
+    display: flex;
+    flex-direction: column;        /* Елементи стоять один під одним */
+    flex-shrink: 0;                /* Не дає сайдбару стискатись */
+    color: #EEE4E0;                /* Колір тексту (світлий) */
+    box-sizing: border-box;        /* Щоб padding не роздував ширину */
+}
+
+.back-arrow {
+    padding: 20px;
+}
+
+.back-arrow svg {
+    
+    width:28 px;
+    height: 48px;
+}
+
+/* =========================================
+   3. ПРОФІЛЬ (Аватарка та імена)
+   ========================================= */
+.user-profile {
+    display: flex;
+    flex-direction: row;           /* Фото та імена стоять в ряд */
+    align-items: center;           /* Центрує їх по вертикалі */
+    gap: 40px;                     /* Відстань між колом та текстом */
+    margin-bottom: 60px;           /* Відступ від профілю до меню */
+    margin-left: 25px;
+}
+
+.avatar-circle {
+    width: 95px;                  /* Розмір твого кола з макета */
+    height: 95px;                 /* Має бути таким само, як ширина */
+    border-radius: 50%;            /* Робить коло круглим */
+    background: linear-gradient(90deg, #EEE4E0 0%, #F7F1EF 50%, #EEE4E0 100%); /* Градієнт */
+    position: relative;            /* Треба для корони */
+}
+
+.crown-icon{
+   position: absolute;
+    width: 28px;
+    height: 28px;
+    bottom: 5px;
+    right: 5px;
+}
+
+
+
+
+.user-names {
+    display: flex;
+    flex-direction: column;        /* Ім'я над прізвищем */
+    gap: 8px;                     /* Відстань між ім'ям та прізвищем */
+    font-weight: 300;
+    letter-spacing: 0.3px;
+}
+
+.user-names span {
+    font-size: 22px;               /* Розмір шрифту з Typography */
+    border-bottom: 1px solid #FFF; /* Біла лінія під ім'ям */
+    padding-bottom: 1.8px;           /* Відступ тексту від лінії */
+   
+}
+
+/* =========================================
+   4. МЕНЮ (Навігація)
+   ========================================= */
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-left: 30px;
+
+}
+
+.nav-link {
+    font-size: 22px;
+    color: #EEE4E0;
+    text-decoration: none;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+
+    transform: translateX(-3px);
+
+    white-space: nowrap;
+}
+
+.nav-link svg {
+   margin-left:10 ;
+    width: 35px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+.nav-link.active {
+    text-decoration: underline;    /* Підкреслення для "Мій акаунт" */
+}
+
+
+/* =========================================
+   ОСНОВНИЙ КОНТЕНТ
+   ========================================= */
+
+/* Контейнер, який займає праву частину екрану */
+.main-content {
+    flex: 1; 
+    display: flex;
+    flex-direction: column; /* Змінив, щоб кнопка була під рамкою, якщо потрібно, але зараз все в рамці */
+    justify-content: center;
+    align-items: center; 
+    padding: 40px;
+    background-color: #f9f9f9; 
+    box-sizing: border-box;
+}
+
+/* Сама рамка "Мої бронювання" */
+.main-frame {
+    width: 100%;
+    max-width: 800px;              
+    margin: 0 auto;
+    background: #FFFFFF;
+   border: 1.4px solid #612A26;     /* Бордова рамка */
+    border-radius: 12px;           /* Заокруглення кутів */
+    padding: 26px 30px;                 /* Внутрішні відступи від рамки до тексту */
+    margin-bottom: 26px;  
+}
+
+.page-title {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;      
+    font-size: 32px;       
+    color: #111111;
+    margin-top: 0px;       
+    margin-bottom: 15px;
+    white-space: nowrap;   
+}
+
+/* =========================================
+   КАРТКИ ПРОЦЕДУР
+   ========================================= */
+
+.record-card {
+    display: flex;
+    align-items: center; /* Центрує контент по вертикалі */
+    justify-content: space-between;
+    padding: 15px 20px; 
+    margin-bottom: 12px; 
+    background: #FFFFFF;
+    border: 1px solid #75403D;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.record-main-info {
+    display: flex;
+    flex-direction: row; 
+    align-items: center; 
+    justify-content: flex-start; 
+}
+
+/* Іконка календаря */
+.record-icon-box {
+    width: 55px;  
+    height: 55px;
+    margin-right: 12px; 
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.record-icon-box svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Назва процедури */
+.record-details h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #111111;
+    margin: 0 0 2px 0; 
+}
+
+/* Дата та майстер */
+.record-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0px; 
+}
+
+.record-meta span {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    color: #666666;
+    line-height: 1.4; 
+}
+
+/* =========================================
+   КНОПКА "ПЕРЕНЕСТИ" ТА "НОВИЙ ЗАПИС"
+   ========================================= */
+
+/* Контейнер для кнопки всередині картки */
+.record-action {
+    display: flex;
+    align-self: flex-start; /* 👈 ЦЕ ПРИТИСКАЄ КНОПКУ ДО ВЕРХУ КАРТКИ */
+    margin-top: 5px; /* Щоб кнопка була ідеально на одному рівні з назвою процедури */
+}
+
+/* Кнопка "Перенести" (виглядає як текст) */
+.btn-reschedule {
+    background: none;
+    border: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px; 
+    font-weight: 500;
+    color: #111111;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: none;
+}
+
+.btn-reschedule:hover {
+    text-decoration: underline;
+}
+
+/* Текст, якщо перенести не можна (менше 24 год) */
+.reschedule-disabled {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: #999999;
+}
+
+/* Блок для кнопки "+ Новий запис" в самому низу */
+.new-booking-container {
+    display: flex;
+    justify-content: center;; /* Кнопка справа знизу. Якщо хочеш по центру — зміни на center */
+    margin-top: 25px;
+}
+
+.btn-new-booking {
+    background-color: #612A26; 
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-new-booking:hover {
+    background-color: #4a201d; 
+}
+
+/* =========================================
+   МОДАЛЬНЕ ВІКНО (Віконце, що випливає)
+   ========================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0; /* Невидиме за замовчуванням */
+    visibility: hidden; /* Сховане за замовчуванням */
+    transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1; /* Робимо видимим, коли є клас active */
+    visibility: visible;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    width: 350px;
+    border: 1.4px solid #612A26;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    font-family: 'Inter', sans-serif;
+    color: #111;
+}
+
+.modal-form-group {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-form-group label {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+.modal-form-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-cancel { background: none; border: 1px solid #ccc; border-radius: 6px; padding: 8px 16px; cursor: pointer; }
+.btn-save { background: #612A26; color: #fff; border: none; border-radius: 6px; padding: 8px 16px; cursor: pointer; }

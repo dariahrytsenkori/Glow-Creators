@@ -1,0 +1,33 @@
+const express = require('express');
+const mysql = require('mysql2');
+const cors = require('cors');
+const path = require('path');
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+// Цей рядок каже серверу шукати файли прямо в папці salon-project
+app.use(express.static(__dirname));
+
+const db = mysql.createConnection({
+    host: '26.105.234.220',
+    user: 'Даша',
+    password: 'dasha_kruta',
+    database: 'salon_krasi'
+});
+
+db.connect(err => {
+    if (err) console.error('❌ Помилка БД:', err.message);
+    else console.log('✅ База підключена!');
+});
+
+// Головна сторінка
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+const PORT = 3001;
+app.listen(PORT, () => {
+    console.log(`🚀 Сервер працює: http://localhost:${PORT}`);
+});

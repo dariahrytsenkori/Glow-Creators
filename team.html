@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty Whisper - Наша команда</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-brown: #612a26;
+            --text-black: #1a1a1a;
+            --text-gray: #757575;
+            --bg-light: #fcfcfc;
+            --border-light: #ececec; /* Світліший колір для ліній */
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-light);
+            margin: 0;
+            color: var(--text-black);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header-section h1 {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--text-black);
+        }
+
+        .header-section h2 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-top: 0;
+        }
+
+        /* Фільтри */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 50px;
+        }
+
+        .filter-btn {
+            padding: 10px 28px;
+            border: 1px solid #d1d1d1;
+            background: #fff;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+            color: var(--text-black);
+        }
+
+        .filter-btn.active {
+            background-color: var(--main-brown);
+            color: white;
+            border-color: var(--main-brown);
+        }
+
+        /* Сітка */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        /* Картка майстра */
+        .master-card {
+            background: #fff;
+            border-radius: 35px;
+            display: flex;
+            padding: 28px;
+            gap: 28px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            border: 1px solid #f5f5f5;
+        }
+
+        .master-image {
+            width: 260px;
+            height: 350px;
+            border-radius: 25px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .master-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .master-name {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -0.5px;
+        }
+
+        .master-role {
+            font-size: 15px;
+            color: var(--text-black); /* У Фігмі роль зазвичай чорна або темно-сіра */
+            margin: 6px 0 15px 0;
+            font-weight: 600;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: var(--border-light);
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .master-bio {
+            font-size: 13px;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .master-stats {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .star-icon {
+            font-size: 20px;
+            color: var(--main-brown); /* Зірочка акцентна */
+        }
+
+        .stats-text span {
+            font-size: 11px;
+            color: var(--text-gray);
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stats-text b {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .specialization-title {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .spec-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-black);
+        }
+
+        .check-circle {
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid var(--text-black);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            flex-shrink: 0;
+        }
+
+        .btn-book {
+            background-color: var(--main-brown);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 1px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-book:hover {
+            background-color: #4e211e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(97, 42, 38, 0.2);
+        }
+
+        @media (max-width: 1100px) {
+            .team-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+
+<title>Майстри Beauty Whisper | Кращі стилісти та візажисти Києва</title> 
+<meta name="description" content="Знайомтеся з професійною командою Beauty Whisper. Переглядайте портфоліо, рейтинг та відгуки. Обирайте свого майстра та бронюйте зручний час.">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-83V3G84WF8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-83V3G84WF8');
+</script>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{
+if(f.fbq)return;
+n=f.fbq=function(){
+n.callMethod ?
+n.callMethod.apply(n,arguments) :
+n.queue.push(arguments)
+};
+if(!f._fbq)f._fbq=n;
+n.push=n;
+n.loaded=!0;
+n.version='2.0';
+n.queue=[];
+t=b.createElement(e);
+t.async=!0;
+t.src=v;
+s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)
+}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '1319428688473589');
+fbq('track', 'PageView');
+</script>
+
+</head>
+<body>
+
+<div class="container">
+    <div class="header-section">
+        <h1>Наша команда</h1>
+        <h2>Майстри</h2>
+    </div>
+
+    <div class="filters">
+        <button class="filter-btn active" onclick="filter('Всі', this)">Всі</button>
+        <button class="filter-btn" onclick="filter('Волосся', this)">Волосся</button>
+        <button class="filter-btn" onclick="filter('Макіяж', this)">Макіяж</button>
+        <button class="filter-btn" onclick="filter('Нігті', this)">Нігті</button>
+    </div>
+
+    <div class="team-grid" id="team-grid"></div>
+</div>
+
+<script>
+    const masters = [
+        { cat: 'Волосся', name: 'Анастасія', role: 'Hair-Майстер', bio: 'Створюю зачіски, що підкреслюють вашу індивідуальність та стиль. Працюю з різними техніками укладок та плетінь для особливих подій і на кожен день.', exp: '7+ років', specs: ['Весільні та вечірні зачіски', 'Укладки та локони', 'Плетіння та коси'], img: 'img2/IMG_3660.jpg' },
+        { cat: 'Волосся', name: 'Вікторія', role: 'Hair-Майстер', bio: 'Створення стильних форм та ідеальних зачісок для ваших особливих подій. Професійний підхід до кожної деталі вашого неповторного образу.', exp: '6+ років', specs: ['Стильні жіночі стрижки', 'Укладки та зачіски', 'Вечірній образ'], img: 'img2/IMG_3662.jpg' },
+        { cat: 'Волосся', name: 'Емілія', role: 'Hair-Майстер', bio: 'Експерт з дзеркальної гладкості та складних технік зміни кольору. Професійне вирівнювання волосся з гарантованим блискучим результатом.', exp: '3+ роки', specs: ['Складне фарбування', 'Холодне відновлення', 'Кератин'], img: 'img2/IMG_3690.jpg' },
+        { cat: 'Волосся', name: 'Вероніка', role: 'Hair-Майстер', bio: 'Майстер з глибокого відновлення та оздоровлення тьмяного волосся. Повертає життєву силу пасмам за допомогою професійних SPA-ритуалів.', exp: '5+ років', specs: ['Весільні та вечірні зачіски', 'Холодне відновлення', 'SPA догляд для волосся'], img: 'img2/IMG_3652.jpg' },
+        { cat: 'Макіяж', name: 'Ангеліна', role: 'Майкер-стиліст', bio: 'Вечірні та весільні образи будь-якої складності у ніжних техніках. Легкий Nude-макіяж, що дарує впевненість та сяючий вигляд.', exp: '4+ роки', specs: ['Nude макіяж', 'Вечірній макіяж', 'Весільний макіяж'], img: 'img2/IMG_3708.jpg' },
+        { cat: 'Макіяж', name: 'Юлія', role: 'Майкер-стиліст', bio: 'Стійкий вечірній макіяж та створення бездоганного образу нареченої. Ідеальний тон шкіри та акценти, що тримаються протягом усього дня.', exp: '3+ роки', specs: ['Весільний макіяж', 'Вечірній макіяж', 'Весільний стиліст'], img: 'img2/5120BAA7-31FE-46D1-941F-2E4855975BDD.jpg' },
+        { cat: 'Макіяж', name: 'Вікторія', role: 'Майкер-стиліст', bio: 'Створення витонченого Nude-макіяжу та вишуканих вечірніх образів. Професійне підкреслення вашої природності для особливих моментів.', exp: '2+ роки', specs: ['Nude макіяж', 'Вечірній макіяж', 'Весільний макіяж'], img: 'img2/IMG_3702.jpg' },
+        { cat: 'Макіяж', name: 'Катерина', role: 'Майкер-стиліст', bio: 'Естетика денного макіяжу та розкішні образи для вечірніх подій. Індивідуальний підбір техніки для вашого неповторного стилю.', exp: '5+ років', specs: ['Спеціалізація', 'Денний макіяж', 'Вечірній макіяж'], img: 'img2/IMG_3709.jpg' },
+        { cat: 'Нігті', name: 'Анна', role: 'Nail-Майстер', bio: 'Бездоганна чистота манікюру та педикюру з увагою до кожного міліметра. Створення естетичного покриття, що підкреслює природну красу ваших рук.', exp: '3+ роки', specs: ['Манікюр + покриття', 'Апаратний педикюр', 'Зміцнення та дизайн'], img: 'img2/IMG_3654.jpg' },
+        { cat: 'Нігті', name: 'Олена', role: 'Nail-Майстер', bio: 'Втілення трендових дизайнів та художній розпис, що приковує погляди. Якісне зміцнення нігтьової пластини та ідеально рівне стійке покриття.', exp: '4+ роки', specs: ['Манікюр + покриття', 'Апаратний педикюр', 'Зміцнення та дизайн'], img: 'img2/IMG_3653.jpg' },
+        { cat: 'Нігті', name: 'Марія', role: 'Nail-Майстер', bio: 'Ідеальне моделювання та архітектура нігтів будь-якої довжини. Професійний догляд за шкірою стоп та естетичний педикюр.', exp: '5+ років', specs: ['Манікюр + покриття', 'Апаратний педикюр', 'Зміцнення та дизайн'], img: 'img2/IMG_3657.jpg' },
+        { cat: 'Нігті', name: 'Христина', role: 'Nail-Майстер', bio: 'Швидкість та якість у комбінованому манікюрі та апаратному педикюрі. Турбота про здоров\'я нігтів та легкість ваших ніг після кожної процедури.', exp: '2+ роки', specs: ['Манікюр + покриття', 'Апаратний педикюр', 'Зміцнення та дизайн'], img: 'img2/IMG_3715.jpg' }
+    ];
+
+    function render(data) {
+        const grid = document.getElementById('team-grid');
+        grid.innerHTML = data.map(m => `
+            <div class="master-card">
+                <img src="${m.img}" class="master-image" alt="${m.name}" onerror="this.src='https://via.placeholder.com/260x350?text=Photo'">
+                <div class="master-content">
+                    <h3 class="master-name">${m.name}</h3>
+                    <div class="master-role">${m.role}</div>
+                    <div class="divider"></div>
+                    <p class="master-bio">${m.bio}</p>
+                    
+                    <div class="master-stats">
+                        <div class="star-icon">★</div>
+                        <div class="stats-text">
+                            <span>Досвід</span>
+                            <b>${m.exp}</b>
+                        </div>
+                    </div>
+
+                    <div class="specialization-title">Спеціалізація:</div>
+                    <div class="spec-list">
+                        ${m.specs.map(s => `
+                            <div class="spec-item">
+                                <div class="check-circle">✓</div>
+                                ${s}
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <button class="btn-book">ЗАПИСАТИСЯ</button>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function filter(category, btn) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filtered = category === 'Всі' ? masters : masters.filter(m => m.cat === category);
+        render(filtered);
+    }
+
+    render(masters);
+</script>
+
+</body>
+</html>

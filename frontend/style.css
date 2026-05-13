@@ -1,1 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
 
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fff;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+.main-header {
+    padding: 20px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #000;
+    font-size: 14px;
+}
+
+.nav-menu a.active { font-weight: 700; }
+
+/* Reviews Top */
+.reviews-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 60px 0 40px;
+}
+
+h1 {
+    font-size: 64px;
+    font-weight: 300;
+    text-transform: lowercase;
+}
+
+.main-stars {
+    color: #612a26;
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.arrow {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid #000;
+    background: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+/* Grid */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.review-card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+    border: 1px solid #f0f0f0;
+}
+
+.card-user {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.card-user img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.user-name { font-weight: 700; display: block; }
+.user-date { font-size: 12px; color: #aaa; }
+
+/* Form */
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+}
+
+.review-form-card {
+    width: 100%;
+    max-width: 800px;
+    background: #fff;
+    padding: 50px;
+    border-radius: 30px;
+    border: 1px solid #eee;
+    text-align: center;
+}
+
+.review-form-card input, .review-form-card textarea {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 40px;
+    border: 1px solid #eee;
+    background: #f9f9f9;
+    font-family: inherit;
+}
+
+.review-form-card textarea { border-radius: 20px; height: 120px; resize: none; }
+
+.publish-btn {
+    width: 100%;
+    padding: 20px;
+    border-radius: 40px;
+    background: #612a26;
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+/* Оновлений Футер */
+.main-footer {
+    background-color: #612a26; /* Твій бордовий колір */
+    color: #ffffff;
+    padding: 80px 0 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    align-items: flex-start;
+}
+
+.footer-text-side { flex: 1.5; }
+.footer-image-side { flex: 1; text-align: center; }
+
+.footer-title {
+    font-size: 48px;
+    font-weight: 400;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.footer-description {
+    font-size: 16px;
+    margin-bottom: 40px;
+    opacity: 0.8;
+    max-width: 400px;
+}
+
+.footer-info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.footer-col h4 {
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    opacity: 0.6;
+}
+
+.footer-col ul { list-style: none; }
+.footer-col li, .footer-col p {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+/* Стиль для картинки у футері */
+.footer-main-img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.footer-logo-text {
+    font-size: 32px;
+    font-weight: 300;
+    margin-top: 15px;
+    letter-spacing: 3px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 12px;
+    opacity: 0.5;
+}
+
+/* Стилі для логотипу в шапці */
+.header-logo {
+    height: 45px; /* Можеш змінити висоту під свій макет */
+    width: auto;  /* Ширина підлаштується автоматично */
+    display: block;
+    object-fit: contain;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+/* Прибираємо стандартні відступи у списку, якщо вони заважають */
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}

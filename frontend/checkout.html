@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оформлення запису | Beauty Whisper</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-color: #612a26;
+            --bg-color: #fcfcfc;
+            --text-dark: #2c2c2c;
+            --text-gray: #9c9c9c;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-dark);
+        }
+
+        .checkout-container {
+            background: white;
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            border: 1px solid #f0f0f0;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-dark);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .order-summary {
+            background: #fdfaf9;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .summary-total {
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            margin-top: 10px;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--main-color);
+        }
+
+        .btn-confirm {
+            width: 100%;
+            background-color: var(--main-color);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-confirm:hover {
+            background-color: #4a1f1c;
+            transform: translateY(-2px);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="checkout-container">
+    <h2>Підтвердження</h2>
+    
+    <form id="checkout-form">
+        <div class="form-group">
+            <label>Ваше ім'я</label>
+            <input type="text" id="cust-name" placeholder="Введіть ім'я" required>
+        </div>
+        
+        <div class="form-group">
+            <label>Номер телефону</label>
+            <input type="tel" id="cust-phone" placeholder="+380" required>
+        </div>
+
+        <div class="form-group">
+            <label>Спосіб оплати</label>
+            <select id="payment-method">
+                <option value="cash">Готівкою в салоні</option>
+                <option value="card">Картою (онлайн)</option>
+            </select>
+        </div>
+
+        <div class="order-summary" id="summary-box">
+            </div>
+
+        <button type="submit" class="btn-confirm">Підтвердити запис</button>
+    </form>
+
+    <a href="cart.html" class="back-link">Повернутися до кошика</a>
+</div>
+
+<script>
+    // 1. Малюємо суму (це у тебе було, залишаємо)
+    function renderSummary() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const summaryBox = document.getElementById('summary-box');
+        
+        let rawSum = 0;
+        cart.forEach(item => {
+            rawSum += parseInt(item.price) || 0;
+        });
+
+        let discountPercent = 0;
+        if (rawSum > 10000) discountPercent = 15;
+        else if (rawSum >= 5001) discountPercent = 10;
+        else if (rawSum >= 2001) discountPercent = 7;
+        else if (rawSum > 0) discountPercent = 3;
+
+        const discountAmount = (rawSum * discountPercent) / 100;
+        const finalSum = rawSum - discountAmount;
+
+        summaryBox.innerHTML = `
+            <div class="summary-line">
+                <span>Кількість послуг:</span>
+                <span>${cart.length}</span>
+            </div>
+            <div class="summary-line">
+                <span>Знижка (${discountPercent}%):</span>
+                <span>-${Math.round(discountAmount)} грн</span>
+            </div>
+            <div class="summary-total">
+                <span>До сплати:</span>
+                <span id="final-amount-value">${Math.round(finalSum)}</span> грн
+            </div>
+        `;
+        return Math.round(finalSum);
+    }
+
+    // 2. ГОЛОВНА ФУНКЦІЯ ОПЛАТИ (Та сама, якої "не було")
+    async function confirmOrder(e) {
+        if (e) e.preventDefault(); // Зупиняємо звичайне перезавантаження форми
+
+        const btn = document.querySelector('.btn-confirm');
+        const paymentMethod = document.getElementById('payment-method').value;
+        const finalAmount = renderSummary(); // Отримуємо актуальну суму
+
+        // Якщо людина обрала "Готівка" — просто пускаємо далі
+        if (paymentMethod === 'cash') {
+            alert('Запис створено! Оплата готівкою в салоні.');
+            localStorage.removeItem('cart');
+            window.location.href = 'history.html';
+            return;
+        }
+
+        // ЯКЩО ОБРАНО КАРТУ — ЗАПУСКАЄМО LIQPAY
+        try {
+            btn.disabled = true;
+            btn.innerText = "Обробка платежу...";
+
+            const response = await fetch('/api/pay', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    amount: finalAmount,
+                    description: "Оплата б'юті-послуг",
+                    orderId: "ORDER_" + Date.now()
+                })
+            });
+
+            const { data, signature } = await response.json();
+
+            // Створюємо форму для LiqPay
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = 'https://www.liqpay.ua/api/3/checkout';
+
+            const dataInput = document.createElement('input');
+            dataInput.type = 'hidden';
+            dataInput.name = 'data';
+            dataInput.value = data;
+            form.appendChild(dataInput);
+
+            const sigInput = document.createElement('input');
+            sigInput.type = 'hidden';
+            sigInput.name = 'signature';
+            sigInput.value = signature;
+            form.appendChild(sigInput);
+
+            document.body.appendChild(form);
+            
+            // Перед переходом очищуємо кошик
+            localStorage.removeItem('cart');
+            
+            form.submit(); // Відправка на банк
+
+        } catch (error) {
+            console.error("Payment error:", error);
+            alert("Помилка зв'язку з сервером. Перевір, чи запущений node server.js");
+            btn.disabled = false;
+            btn.innerText = "Підтвердити запис";
+        }
+    }
+
+    // Прив'язуємо функцію до форми
+    document.getElementById('checkout-form').addEventListener('submit', confirmOrder);
+
+    // Ініціалізація при завантаженні сторінки
+    window.onload = renderSummary;
+</script>
+
+</body>
+</html>

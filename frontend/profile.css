@@ -1,0 +1,488 @@
+/* =========================================
+   1. ЗАГАЛЬНІ НАЛАШТУВАННЯ (Основа сторінки)
+   ========================================= */
+body {
+    margin: 0;                     /* Прибирає зайві відступи браузера */
+    padding: 0;                    /* Прибирає внутрішні відступи браузера */
+    font-family: 'Inter', sans-serif; /* Твій шрифт з макета */
+    background-color: #FFFFFF;     /* Основний фон (білий) */
+}
+
+.layout-container {
+    display: flex;                 /* Ставить сайдбар і контент поруч */
+    min-height: 100vh;             /* Розтягує сторінку на всю висоту екрана */
+}
+
+/* =========================================
+   2. САЙДБАР (Ліве бордове меню)
+   ========================================= */
+.sidebar {
+    background-color: #612A26;     /* Твій бордовий колір з Fill */
+    width: 400px;                  /* Адекватна ширина сайдбару (було 650) */
+    padding-top: 10px;             /* Відступ від верху до стрілочки */
+    padding-left: 13px;           
+    padding-right: 40px;           /* Відступ справа, щоб текст не лип до краю */
+    display: flex;
+    flex-direction: column;        /* Елементи стоять один під одним */
+    flex-shrink: 0;                /* Не дає сайдбару стискатись */
+    color: #EEE4E0;                /* Колір тексту (світлий) */
+    box-sizing: border-box;        /* Щоб padding не роздував ширину */
+}
+
+.back-arrow {
+    padding: 20px;
+}
+
+.back-arrow svg {
+    
+    width:28 px;
+    height: 48px;
+}
+
+/* =========================================
+   3. ПРОФІЛЬ (Аватарка та імена)
+   ========================================= */
+.user-profile {
+    display: flex;
+    flex-direction: row;           /* Фото та імена стоять в ряд */
+    align-items: center;           /* Центрує їх по вертикалі */
+    gap: 40px;                     /* Відстань між колом та текстом */
+    margin-bottom: 60px;           /* Відступ від профілю до меню */
+    margin-left: 25px;
+}
+
+.avatar-circle {
+    width: 95px;                  /* Розмір твого кола з макета */
+    height: 95px;                 /* Має бути таким само, як ширина */
+    border-radius: 50%;            /* Робить коло круглим */
+    background: linear-gradient(90deg, #EEE4E0 0%, #F7F1EF 50%, #EEE4E0 100%); /* Градієнт */
+    position: relative;            /* Треба для корони */
+}
+
+.crown-icon{
+   position: absolute;
+    width: 28px;
+    height: 28px;
+    bottom: 5px;
+    right: 5px;
+}
+
+
+
+
+.user-names {
+    display: flex;
+    flex-direction: column;        /* Ім'я над прізвищем */
+    gap: 8px;                     /* Відстань між ім'ям та прізвищем */
+    font-weight: 300;
+    letter-spacing: 0.3px;
+}
+
+.user-names span {
+    font-size: 22px;               /* Розмір шрифту з Typography */
+    border-bottom: 1px solid #FFF; /* Біла лінія під ім'ям */
+    padding-bottom: 1.8px;           /* Відступ тексту від лінії */
+   
+}
+
+/* =========================================
+   4. МЕНЮ (Навігація)
+   ========================================= */
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-left: 30px;
+
+}
+
+.nav-link {
+    font-size: 22px;
+    color: #EEE4E0;
+    text-decoration: none;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+
+    transform: translateX(-3px);
+
+    white-space: nowrap;
+}
+
+.nav-link svg {
+   margin-left:10 ;
+    width: 35px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+.nav-link.active {
+    text-decoration: underline;    /* Підкреслення для "Мій акаунт" */
+}
+
+/* =========================================
+   5. ГОЛОВНИЙ КОНТЕНТ (Права частина)
+   ========================================= */
+.main-content {
+    flex-grow: 1;                  /* Займає все вільне місце справа */
+    padding: 35px 50px;           /* Великі відступи від країв */
+    background-color: #FFFFFF;
+     justify-content: center;
+}
+
+.content-wrapper {
+    max-width: 800px;              /* Щоб контент не розповзався занадто широко */
+     margin: 0 auto;
+}
+
+/* Картки (Бонуси та Інфо) */
+.card {
+    border: 1.3px solid #612A26;     /* Бордова рамка */
+    border-radius: 12px;           /* Заокруглення кутів */
+    padding: 18px;                 /* Внутрішні відступи від рамки до тексту */
+    margin-bottom: 26px;           /* Відстань між картками */
+  
+
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; 
+    white-space: nowrap;
+}
+
+.card h2 {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+    
+    font-size: 25px;      /* 👈 Тепер міняй цю цифру, і розмір точно зміниться */
+    font-weight: 400;     /* 👈 Додано! 400 - нормальний, 600 - напівжирний, 700 - жирний */
+    
+}
+
+.card h2 svg {
+    width: 22px;
+    height: 22px;
+    margin-top: -3px;
+}
+
+#bonusPoints {
+     font-size: 22px;
+    color: #612A26;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.bonus-box span {
+    font-size: 12px;
+    color: #999;
+    margin-top: 4px; /* 🔥 рівно під цифрою */
+}
+
+.bonus-box {
+ display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.bonus-subtitle {
+    margin-top: -9px;   /* вниз */
+    color: #999;
+  
+}
+
+
+
+
+/* =========================================
+   6. БОНУСИ (Смужка прогресу)
+   ========================================= */
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.progress-right {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    color: #612A26;
+
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.progress-bar {
+    width: 100%;
+    height: 5px;
+    background: #E5E5E5;  /* сірий фон */
+    border-radius: 4px;
+    overflow: hidden;      /* 🔥 важливо, щоб fill не виліз */
+    margin-top: 15px;
+}
+
+#bonusFill {
+    height: 100%;
+    width: 97%;
+
+    background: linear-gradient(
+        90deg,
+        rgba(97, 42, 38, 1) 0%,      /* темний старт */
+        rgba(137, 80, 74, 1) 40%,
+        rgba(162, 112, 108, 1) 75%,
+        rgba(200, 200, 200, 1) 100%   /* 🔥 світліший кінець */
+    );
+
+    border-radius: 4px;
+}
+
+
+
+
+
+/* кнопка "Редагувати" */
+.edit-btn {
+    color: #000;              /* чорний колір */
+    text-decoration: none;    /* без підкреслення */
+    font-size: 18px;
+    font-weight: 400;
+    cursor: pointer;
+    margin-top: 6px;
+}
+
+.edit-btn:hover {
+    text-decoration: underline; /* легкий hover ефект */
+}
+
+
+.photo-section {
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    height: 95px;
+
+    background: #FFFFFF;
+    border: 2px solid #612A26;
+    border-radius: 20px;
+
+    padding: 12px 22px; /* нормальні відступи замість 603px */
+    box-shadow: 0px 12px 20px -5px rgba(0, 0, 0, 0.05);
+
+    margin-top: 30px;
+}
+
+.photo-box {
+    box-sizing: border-box;
+
+    width: 65px;
+    height: 65px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        90deg,
+        #EEE4E0 0%,
+        #F7F2F0 50%,
+        #EEE4E0 100%
+    );
+
+    border: 2px solid #612A26;
+
+    flex-shrink: 0;
+}
+
+.photo-text h3 {
+    margin: 0;
+
+    font-family: 'Inter';
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 22px;
+
+    color: #000;
+
+    width: auto;
+}
+
+
+.upload-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 6px 10px;
+
+    background: #FFFFFF;
+
+    border-radius: 10px;
+
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.05);
+
+    border: none;
+    cursor: pointer;
+
+    font-size: 12px;
+
+    margin-left: -7px;
+}
+
+.photo-section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+
+.info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px; /* головний відступ між блоками */
+}
+
+
+.info-grid p {
+    margin: 0;
+
+    font-family: 'Inter';
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 22px;
+
+    color: #000;
+
+     display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.info-grid span {
+    font-family: 'Inter';
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 27px;
+
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.row-inline {
+    display: flex;
+    gap: 260px;
+}
+
+
+/* =========================================
+   ВІКНО РЕДАГУВАННЯ ПРОФІЛЮ (Попап)
+   ========================================= */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000;
+    opacity: 0; visibility: hidden; transition: 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1; visibility: visible;
+}
+
+.edit-modal-card {
+    background: #f8f9fa; /* Світло-сірий фон як на скріні */
+    border-radius: 16px;
+    padding: 30px;
+    width: 100%;
+    max-width: 650px; /* Широке вікно */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    display: flex; flex-direction: column;
+}
+
+.edit-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.edit-modal-header h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+    color: #111;
+}
+
+.edit-modal-actions {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.btn-cancel-edit {
+    background: none; border: none; cursor: pointer;
+    font-family: 'Inter', sans-serif; font-size: 14px; color: #666;
+    display: flex; align-items: center; gap: 6px;
+}
+.btn-cancel-edit:hover { color: #111; }
+
+.btn-save-edit {
+    background: #222c3c; /* Темний колір кнопки збереження з твого фото */
+    color: #fff; border: none; border-radius: 8px;
+    padding: 8px 16px; font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500;
+    cursor: pointer; display: flex; align-items: center; gap: 8px;
+    transition: 0.2s;
+}
+.btn-save-edit:hover { background: #111; }
+
+/* Поля введення всередині попапу */
+.edit-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 колонки для імені та прізвища */
+    gap: 20px;
+}
+
+.edit-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.edit-input-group.full-width {
+    grid-column: span 2; /* Займає всю ширину */
+}
+
+.edit-input-group label {
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    color: #666;
+    margin-left: 5px;
+}
+
+.edit-input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 12px;
+    background: #e9ecef; /* Сірий фон інпутів як на фото */
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    color: #111;
+    outline: none;
+    box-sizing: border-box;
+}
+.edit-input-group input:focus {
+    box-shadow: inset 0 0 0 1.5px #612A26; /* Підсвітка при кліку */
+}

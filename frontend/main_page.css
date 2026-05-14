@@ -1,0 +1,701 @@
+/* БАЗОВІ НАЛАШТУВАННЯ */
+:root {
+    --main-brown: #5C2D25;
+    --text-color: #333;
+    --bg-color: #F9F9F9;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* ШАПКА (HEADER) */
+.main-header {
+    background: #fff;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-name { display: block; font-weight: 600; letter-spacing: 2px; font-size: 18px; color: #555; }
+.brand-sub { display: block; font-weight: 300; letter-spacing: 4px; font-size: 14px; color: #777; }
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.nav-menu a:hover { color: var(--main-brown); }
+
+.profile-link a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* ГОЛОВНИЙ БАНЕР (HERO SECTION) */
+.hero-section {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-card {
+    display: flex;
+    background: #fff;
+    border-radius: 30px;
+    overflow: hidden; /* Обов'язково, щоб обрізати картинку по новій висоті */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    
+    /* Додайте ці рядки: */
+    height: 500px; /* Встановіть бажану висоту в пікселях */
+}
+
+.hero-image-side { flex: 1; }
+.hero-image-side img {
+    width: 100%;
+    height: 100%;
+    /* Змінюємо 'cover' на 'contain' */
+    object-fit: contain; 
+    /* Вирівнюємо картинку по нижньому краю, щоб голова була зверху */
+    object-position: bottom; 
+    display: block;
+    /* Додайте фон, щоб заповнити порожнечу, якщо картинка вужча за блок */
+    background-color: #f7f7f7; /* Або колір фону вашої картинки */
+}
+
+.hero-text-side {
+    flex: 1;
+    padding: 40px 60px; /* Було 80px, зменшуємо, щоб текст вліз у вузький банер */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-main-title {
+    font-size: 48px;
+    letter-spacing: 5px;
+    color: var(--main-brown);
+    margin-bottom: 10px;
+}
+
+.hero-tagline {
+    font-size: 18px;
+    color: #888;
+    margin-bottom: 40px;
+}
+
+.hero-actions { display: flex; gap: 20px; }
+
+.btn-primary, .btn-secondary {
+    padding: 15px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn-primary { background: var(--main-brown); color: #fff; }
+.btn-secondary { border: 1px solid var(--main-brown); color: var(--main-brown); }
+
+/* ПРО НАС (ABOUT SECTION) */
+.about-section {
+    padding: 80px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 60px;
+    font-weight: 400;
+}
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.about-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.about-item.reverse {
+    flex-direction: row-reverse;
+    align-items: flex-start; /* Вирівнювання тексту по верху картинки */
+}
+
+.about-text { flex: 1; display: flex; justify-content: center; }
+
+.about-content {
+    max-width: 400px;
+    font-size: 18px; /* Збільшено як ви просили */
+    line-height: 1.6;
+}
+
+.btn-more-inline {
+    display: inline-block;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 20px; /* Збільшено як ви просили */
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn-more-inline:hover { transform: translateX(5px); color: var(--main-brown); }
+
+.about-image { flex: 1; }
+.about-image img { width: 100%; border-radius: 20px; display: block; }
+
+/* ФУТЕР (FOOTER) */
+.footer {
+    background-color: var(--main-brown);
+    color: #ffffff;
+    padding: 80px 0 30px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+    padding: 0 20px;
+}
+
+.footer-info { flex: 1.5; }
+.footer-headline { font-size: 42px; margin-bottom: 25px; line-height: 1.2; }
+.footer-subtext { font-size: 16px; margin-bottom: 50px; opacity: 0.9; }
+
+.footer-details { display: flex; justify-content: space-between; }
+.footer-col h3 { font-size: 14px; letter-spacing: 1.5px; margin-bottom: 20px; text-transform: uppercase; }
+.footer-col ul { list-style: none; padding: 0; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col a { color: #ffffff; text-decoration: none; opacity: 0.8; }
+.footer-col p { font-size: 14px; margin-bottom: 8px; opacity: 0.8; }
+
+.footer-visual { flex: 1; display: flex; flex-direction: column; align-items: center; }
+.footer-image-box { width: 100%; max-width: 450px; margin-bottom: 30px; }
+.footer-image-box img { width: 100%; border-radius: 30px; }
+
+.footer-logo-title {
+    font-size: 56px;
+    letter-spacing: 15px;
+    font-weight: 300;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.footer-copyright {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+/* АДАПТИВНІСТЬ */
+@media (max-width: 992px) {
+    .hero-card { flex-direction: column; }
+    .hero-text-side { padding: 40px; }
+    .footer-container { flex-direction: column; gap: 40px; }
+}
+
+@media (max-width: 768px) {
+    .about-item, .about-item.reverse { flex-direction: column; text-align: center; }
+    .about-content { max-width: 100%; padding: 0 20px; }
+    .hero-main-title { font-size: 32px; }
+}
+
+/* СЕКЦІЯ ПОСЛУГ НА ГОЛОВНІЙ */
+.services-home {
+    padding: 80px 0;
+    background-color: #fcfcfc;
+}
+
+.services-title {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 50px;
+    font-weight: 400;
+    letter-spacing: 2px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки як у Figma */
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.service-card {
+    position: relative;
+    height: 450px; /* Оптимальна висота для карток */
+    border-radius: 30px;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-tag {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: white;
+    color: #888;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.service-overlay {
+    width: 100%;
+    height: 45%;
+    background: rgba(92, 45, 37, 0.9); /* Ваш фірмовий коричневий колір */
+    padding: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+.service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.service-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    max-width: 60%;
+}
+
+.price-pill {
+    border: 1px solid rgba(255,255,255,0.4);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.service-info p {
+    font-size: 12px;
+    line-height: 1.4;
+    margin: 0;
+    opacity: 0.8;
+}
+
+.service-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.service-time {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.service-btn {
+    background: white;
+    color: #5C2D25;
+    padding: 8px 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.service-btn:hover {
+    background: #f0f0f0;
+}
+
+/* АДАПТИВНІСТЬ ДЛЯ ПОСЛУГ */
+@media (max-width: 992px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    .service-card {
+        height: 400px;
+    }
+}
+
+/* SECTION COMBO */
+.combo-section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+    font-weight: 500;
+}
+
+/* CARD */
+.combo-card {
+    max-width: 900px;
+    margin: 0 auto 40px;
+    background: #FFFFFF;
+    border: 1px solid #F0F0F0;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    gap: 50px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    position: relative;
+    text-align: left;
+}
+
+.combo-image {
+    flex: 1;
+}
+
+.combo-image img {
+    width: 100%;
+    border-radius: 20px;
+    display: block;
+}
+
+.combo-content {
+    flex: 1;
+    position: relative;
+}
+
+/* BADGE -15% */
+.combo-badge {
+    position: absolute;
+    top: -20px;
+    right: 0;
+    background: #A67C78;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.combo-title {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #000;
+}
+
+.combo-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* PRICE */
+.combo-price {
+    margin-bottom: 30px;
+}
+
+.old-price {
+    display: block;
+    text-decoration: line-through;
+    color: #BBBBBB;
+    font-size: 16px;
+}
+
+.current-price {
+    font-size: 32px;
+    font-weight: 700;
+    color: #000;
+}
+
+/* BUTTONS */
+.btn-gradient {
+    display: inline-block;
+    width: 100%;
+    padding: 15px 30px;
+    background: linear-gradient(90deg, #A67C78 0%, #612A26 100%);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+}
+
+.btn-gradient:hover {
+    transform: scale(1.02);
+}
+
+.btn-outline-dark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 30px;
+    background: #8B5E5A; /* Колір як на макеті */
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 16px;
+    transition: opacity 0.3s;
+}
+
+.btn-outline-dark:hover {
+    opacity: 0.9;
+}
+
+/* MOBILE ADAPTIVITY */
+@media (max-width: 768px) {
+    .combo-card {
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+    }
+    .combo-badge {
+        top: -10px;
+        right: 10px;
+    }
+    .combo-title {
+        font-size: 22px;
+    }
+}
+
+/* SECTION TEAM */
+.team-section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+.team-title {
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 50px;
+    color: #000;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 колонки як на макеті */
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* TEAM CARD */
+/* Оновлена картка з насиченим бордовим */
+.team-card {
+    /* Градієнт від світло-рожевого/білого до глибокого бордового */
+    background: linear-gradient(180deg, #F9F3F2 0%, #612A26 100%); 
+    border-radius: 24px;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+    border: none; /* Прибираємо рамку, якщо градієнт активний */
+    box-shadow: 0 10px 20px rgba(97, 42, 38, 0.15); /* М'яка тінь у тон */
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(97, 42, 38, 0.25);
+}
+
+.member-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 25px;
+    /* Рамка навколо фото, щоб воно не зливалося */
+    border: 4px solid rgba(255, 255, 255, 0.2);
+}
+
+.member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-name {
+    font-size: 22px;
+    font-weight: 500;
+    color: #FFFFFF; /* Чистий білий для контрасту */
+    margin: 0 0 8px 0;
+}
+
+.member-role {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7); /* Напівпрозорий білий */
+    text-transform: none;
+    font-weight: 300;
+}
+
+/* Контейнер для стрілки, щоб вона була по центру порожнього слота */
+.team-next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.next-link svg {
+    cursor: pointer;
+    transition: stroke 0.3s ease, transform 0.3s ease;
+}
+
+.next-link:hover svg {
+    transform: rotate(-15deg) scale(1.05); /* Легкий ефект при наведенні */
+}
+
+.next-link svg {
+    width: 80px; /* Трохи зменшив для балансу, на макеті він великий */
+    height: 80px;
+}
+
+/* ADAPTIVITY */
+@media (max-width: 900px) {
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .team-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* SECTION BENEFITS */
+.benefits-section {
+    padding: 100px 0;
+    background-color: #FBFBFB; /* Легкий контрастний фон для білих карток */
+    text-align: center;
+}
+
+.benefits-title {
+    font-size: 32px; /* Збільшений головний заголовок */
+    font-weight: 500;
+    margin-bottom: 40px;
+    color: #000;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* СТИЛЬ РАМКИ ЯК У ФІГМІ */
+.benefit-card {
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 40px; /* Заокруглення як на макеті */
+    padding: 60px 40px; /* Більше простору всередині */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+}
+
+.benefit-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(97, 42, 38, 0.1);
+    border-color: #A67C78;
+}
+
+.benefit-icon {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ЗБІЛЬШЕНИЙ ТЕКСТ */
+.benefit-name {
+    font-size: 26px; /* Більший заголовок переваги */
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #612A26;
+}
+
+.benefit-desc {
+    font-size: 17px; /* Більший опис */
+    line-height: 1.7;
+    color: #555;
+    margin: 0;
+}
+
+/* АДАПТИВНІСТЬ */
+@media (max-width: 1024px) {
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+    }
+    .benefit-card {
+        padding: 40px 20px;
+    }
+}

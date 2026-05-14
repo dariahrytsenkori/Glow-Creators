@@ -1,0 +1,298 @@
+.about-section {
+    padding: 80px 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 60px;
+    font-weight: 400;
+}
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px; /* Відступ між двома рядами */
+}
+
+.about-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.about-item.reverse {
+    flex-direction: row-reverse;
+}
+
+.about-text {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Центруємо текст відносно його контейнера */
+}
+
+.about-content {
+    max-width: 400px; /* Обмежуємо ширину тексту як у Figma */
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.about-content p {
+    margin-bottom: 15px;
+}
+
+.about-image {
+    flex: 1;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 20px; /* Заокруглення як на фото */
+    display: block;
+}
+
+/* Адаптивність для телефонів */
+@media (max-width: 768px) {
+    .about-item, .about-item.reverse {
+        flex-direction: column;
+        text-align: center;
+    }
+    .about-content {
+        max-width: 100%;
+        padding: 0 20px;
+    }
+}
+/* Для мобільних екранів фото буде під текстом */
+@media (max-width: 768px) {
+    .about-item, .about-item.reverse {
+        flex-direction: column;
+        text-align: center;
+    }
+    .about-text, .about-image {
+        flex: 0 0 100%;
+    }
+}
+/* Сітка портфоліо */
+.portfolio-section {
+    max-width: 1100px; /* Обмежуємо ширину всієї секції */
+    margin: 60px auto; /* Центруємо по горизонталі */
+    padding: 0 20px;
+    text-align: center;
+}
+
+.portfolio-title {
+    font-size: 42px;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+/* Контейнер кнопок */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+/* Сама сітка з фото */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Рівно 3 колонки */
+    gap: 10px; /* Мінімальний відступ для ефекту щільності */
+    align-items: start;
+    max-width: 1300px; /* Трохи збільшено для масштабності */
+    margin: 40px auto; /* Центрування сітки */
+}
+
+.portfolio-item {
+    width: 100%;
+    overflow: hidden; /* Щоб нічого не виступало за краї */
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: auto; /* Повна висота без обрізок */
+    display: block;
+    border-radius: 12px;
+    object-fit: cover; /* Якщо хочете ідеальну сітку, або 'contain' для повного фото */
+}
+/* Адаптивність для планшетів та телефонів */
+@media (max-width: 992px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+}
+
+/* Кнопки */
+/* Стилі для кнопок */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.filter-btn {
+    padding: 10px 25px;
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background: #5c2d25; /* Колір з вашого макету */
+    color: white;
+    border-color: #5c2d25;
+}
+
+/* Сітка портфоліо */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.portfolio-item {
+    width: 100%;
+    aspect-ratio: 3 / 4; /* Робить усі картки однакової висоти */
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Фото заповнює площу без деформації */
+    display: block;
+}
+
+/* Футер (як на макеті) */
+.footer {
+    background-color: #5c2d25; /* Той самий коричневий колір */
+    color: #ffffff;
+    padding: 40px 0 30px;
+    font-family: 'Arial', sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+    padding: 0 20px;
+}
+
+/* Лівій блок */
+.footer-info {
+    flex: 1.5;
+}
+
+.footer-headline {
+    font-size: 42px;
+    font-weight: bold;
+    margin-bottom: 25px;
+    line-height: 1.2;
+}
+
+.footer-subtext {
+    font-size: 16px;
+    max-width: 450px;
+    margin-bottom: 50px;
+    opacity: 0.9;
+    line-height: 1.5;
+}
+
+.footer-details {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-col h3 {
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col a {
+    color: #ffffff;
+    text-decoration: none;
+    opacity: 0.8;
+}
+
+.footer-col p {
+    font-size: 14px;
+    margin-bottom: 8px;
+    opacity: 0.8;
+}
+
+/* Правий блок */
+.footer-visual {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer-image-box {
+    width: 100%;
+    max-width: 450px;
+    margin-bottom: 30px;
+}
+
+.footer-image-box img {
+    width: 100%;
+    height: auto;
+    border-radius: 30px; /* Заокруглення як на картинці */
+}
+
+.footer-logo-title {
+    font-size: 56px;
+    letter-spacing: 15px; /* Широкий інтервал між літерами */
+    font-weight: 300;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 0;
+}
+
+.footer-copyright {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 12px;
+    opacity: 0.6;
+}
+
+.contacts a:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}

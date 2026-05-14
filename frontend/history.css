@@ -1,0 +1,233 @@
+/* =========================================
+   1. ЗАГАЛЬНІ НАЛАШТУВАННЯ (Основа сторінки)
+   ========================================= */
+body {
+    margin: 0;                     /* Прибирає зайві відступи браузера */
+    padding: 0;                    /* Прибирає внутрішні відступи браузера */
+    font-family: 'Inter', sans-serif; /* Твій шрифт з макета */
+    background-color: #FFFFFF;     /* Основний фон (білий) */
+}
+
+.layout-container {
+    display: flex;                 /* Ставить сайдбар і контент поруч */
+    min-height: 100vh;             /* Розтягує сторінку на всю висоту екрана */
+}
+
+/* =========================================
+   2. САЙДБАР (Ліве бордове меню)
+   ========================================= */
+.sidebar {
+    background-color: #612A26;     /* Твій бордовий колір з Fill */
+    width: 400px;                  /* Адекватна ширина сайдбару (було 650) */
+    padding-top: 10px;             /* Відступ від верху до стрілочки */
+    padding-left: 13px;           
+    padding-right: 40px;           /* Відступ справа, щоб текст не лип до краю */
+    display: flex;
+    flex-direction: column;        /* Елементи стоять один під одним */
+    flex-shrink: 0;                /* Не дає сайдбару стискатись */
+    color: #EEE4E0;                /* Колір тексту (світлий) */
+    box-sizing: border-box;        /* Щоб padding не роздував ширину */
+}
+
+.back-arrow {
+    padding: 20px;
+}
+
+.back-arrow svg {
+    
+    width:28 px;
+    height: 48px;
+}
+
+/* =========================================
+   3. ПРОФІЛЬ (Аватарка та імена)
+   ========================================= */
+.user-profile {
+    display: flex;
+    flex-direction: row;           /* Фото та імена стоять в ряд */
+    align-items: center;           /* Центрує їх по вертикалі */
+    gap: 40px;                     /* Відстань між колом та текстом */
+    margin-bottom: 60px;           /* Відступ від профілю до меню */
+    margin-left: 25px;
+}
+
+.avatar-circle {
+    width: 95px;                  /* Розмір твого кола з макета */
+    height: 95px;                 /* Має бути таким само, як ширина */
+    border-radius: 50%;            /* Робить коло круглим */
+    background: linear-gradient(90deg, #EEE4E0 0%, #F7F1EF 50%, #EEE4E0 100%); /* Градієнт */
+    position: relative;            /* Треба для корони */
+}
+
+.crown-icon{
+   position: absolute;
+    width: 28px;
+    height: 28px;
+    bottom: 5px;
+    right: 5px;
+}
+
+
+
+
+.user-names {
+    display: flex;
+    flex-direction: column;        /* Ім'я над прізвищем */
+    gap: 8px;                     /* Відстань між ім'ям та прізвищем */
+    font-weight: 300;
+    letter-spacing: 0.3px;
+}
+
+.user-names span {
+    font-size: 22px;               /* Розмір шрифту з Typography */
+    border-bottom: 1px solid #FFF; /* Біла лінія під ім'ям */
+    padding-bottom: 1.8px;           /* Відступ тексту від лінії */
+   
+}
+
+/* =========================================
+   4. МЕНЮ (Навігація)
+   ========================================= */
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    padding-left: 30px;
+
+}
+
+.nav-link {
+    font-size: 22px;
+    color: #EEE4E0;
+    text-decoration: none;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+
+    transform: translateX(-3px);
+
+    white-space: nowrap;
+}
+
+.nav-link svg {
+   margin-left:10 ;
+    width: 35px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+.nav-link.active {
+    text-decoration: underline;    /* Підкреслення для "Мій акаунт" */
+}
+
+/* =========================================
+   ОСНОВНИЙ КОНТЕНТ (БЛОК ІСТОРІЇ)
+   ========================================= */
+
+/* Контейнер, який займає праву частину екрану */
+.main-content {
+    flex: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Центруємо блок по вертикалі і горизонталі, якщо є місце */
+    padding: 40px;
+    background-color: #f9f9f9; /* Світло-сірий фон навколо рамки (за потреби зміни на #fff) */
+    box-sizing: border-box;
+}
+
+/* Сама рамка "Історія бронювань" */
+.main-frame {
+    width: 100%;
+    max-width: 800px;              
+     margin: 0 auto;
+    background: #FFFFFF;
+   border: 1.4px solid #612A26;     /* Бордова рамка */
+    border-radius: 12px;           /* Заокруглення кутів */
+    padding: 26px 30px;                 /* Внутрішні відступи від рамки до тексту */
+    margin-bottom: 26px;  
+}
+
+.page-title {
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;      /* Жирність тексту (600 або 700) */
+    font-size: 32px;       /* Залиш один font-size і міняй його (наприклад, на 32px) */
+    color: #111111;
+    margin-top: 0px;       /* Додали px (або просто 0) */
+    margin-bottom: 15px;
+    white-space: nowrap;   /* Забороняємо перенос тексту */
+}
+
+/* =========================================
+   КАРТКИ ПРОЦЕДУР
+   ========================================= */
+
+.record-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px; /* Зменшив внутрішні відступи (було 20px 25px) */
+    margin-bottom: 12px; /* Зменшив відстань між картками (було 15px) */
+    background: #FFFFFF;
+    border: 1px solid #75403D;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+/* Іконка календаря */
+.record-icon-box {
+    width: 55px;  /* Трохи зменшив саму іконку (було 60px) */
+    height: 55px;
+    margin-right: 12px; /* Зменшив відступ від іконки до тексту (було 20px) */
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.record-icon-box svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* Назва процедури */
+.record-details h3 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #111111;
+    margin: 0 0 2px 0; /* Відступ під заголовком став мінімальним (було 6px) */
+
+}
+
+/* Дата та майстер */
+.record-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0px; /* Прибрав зайву відстань між рядками з датою та майстром */
+}
+
+.record-meta span {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    color: #666666;
+    line-height: 1.4; /* Робить текст трохи щільнішим */
+}
+
+/* Приховуємо ціну та статус, оскільки на твоєму новому макеті їх немає */
+.record-status-price {
+    display: none; 
+}
+
+.record-main-info {
+    display: flex;
+    flex-direction: row; /* ПРИМУСОВО ставить іконку зліва, а текст справа */
+    align-items: center; 
+    justify-content: flex-start; /* Притискає все до лівого краю */
+}

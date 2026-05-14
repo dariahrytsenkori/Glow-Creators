@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запис на процедуру - Beauty Whisper</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-color: #612a26; /* Твій фірмовий коричневий */
+            --bg-color: #fcfcfc;
+            --text-color: #333;
+        }
+
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--bg-color); 
+            margin: 0; 
+            color: var(--text-color);
+        }
+
+        /* НАВІГАЦІЯ */
+        .header { 
+            background: #fff; 
+            padding: 20px 0; 
+            border-bottom: 1px solid #f0f0f0; 
+            display: flex; 
+            justify-content: center; 
+            position: relative; 
+        } 
+        .nav-menu { display: flex; list-style: none; gap: 40px; padding: 0; margin: 0; }
+        .nav-menu a { text-decoration: none; color: #333; font-weight: 500; font-size: 15px; transition: 0.3s; }
+        .nav-menu a:hover, .nav-menu a.active { color: var(--main-color); font-weight: 700; }
+        
+        /* Стиль для неактивної Головної */
+        .nav-menu a[href="#"] { cursor: default; opacity: 0.6; }
+
+        /* КАРТКА ЗАПИСУ */
+        .booking-card {
+            max-width: 500px;
+            margin: 40px auto; 
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .card-header { 
+            background: var(--main-color); 
+            color: white; 
+            padding: 20px; 
+            text-align: center;
+        }
+        .card-header h1 { font-size: 22px; margin: 0; font-weight: 600; }
+        .card-header p { font-size: 13px; margin: 8px 0 0; opacity: 0.9; }
+
+        .card-body { padding: 25px; }
+
+        .label-text { 
+            font-size: 12px; 
+            margin-bottom: 5px; 
+            display: block;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #555;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background: #fdfdfd;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            outline: none;
+        }
+        .form-input:focus { border-color: var(--main-color); }
+
+        /* КАТЕГОРІЇ (КНОПКИ) */
+        .category-group { display: flex; gap: 10px; margin-bottom: 20px; }
+        .category-btn {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid var(--main-color);
+            background: white;
+            color: var(--main-color);
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+        .category-btn.active { background: var(--main-color); color: white; }
+
+        .btn-submit {
+            background: var(--main-color);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .btn-submit:hover { background: #4a1f1c; }
+
+        /* СПИСОК ЗАПИСІВ */
+        .internal-bookings-list { margin-top: 25px; border-top: 1px solid #eee; padding-top: 20px; }
+        .internal-bookings-list h2 { font-size: 14px; text-align: center; color: var(--main-color); text-transform: uppercase; margin-bottom: 15px; }
+        
+        .booking-item {
+            background: #fdfaf9;
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #f2e6e5;
+        }
+
+        .status-message {
+            display: none; padding: 12px; margin-bottom: 15px; border-radius: 10px; font-size: 14px;
+            background-color: #fdf6f8; border: 1px solid var(--main-color); color: var(--main-color);
+            text-align: center;
+        }
+
+        .footer-small { font-size: 10px; color: #aaa; text-align: center; margin-top: 15px; line-height: 1.4; }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#">Головна</a></li> <li><a href="services.html">Послуги</a></li>
+                <li><a href="cart.html">Кошик</a></li>
+                <li><a href="booking.html" class="active">Запис</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="booking-card">
+        <div class="card-header">
+            <h1>Запис на процедуру</h1>
+            <p id="current-schedule">Оберіть дату для перевірки графіка</p>
+        </div>
+
+        <div class="card-body">
+            <div id="statusMessage" class="status-message"></div>
+
+            <form id="bookingForm">
+                <label class="label-text">Оберіть категорію</label>
+                <div class="category-group">
+                    <button type="button" class="category-btn active">Волосся</button>
+                    <button type="button" class="category-btn">Обличчя</button>
+                    <button type="button" class="category-btn">Нігті</button>
+                </div>
+
+                <label class="label-text">Послуга</label>
+                <select class="form-input" id="service" required>
+                    <option value="">Оберіть послугу...</option>
+                </select>
+
+                <label class="label-text">Майстер</label>
+                <select class="form-input" id="master" required>
+                    <option value="">Оберіть майстра...</option>
+                </select>
+
+                <div style="display: flex; gap: 15px;">
+                    <div style="flex: 1;">
+                        <label class="label-text">Бажана дата</label>
+                        <input type="date" class="form-input" id="dateStr" required>
+                    </div>
+                    <div style="flex: 1;">
+                        <label class="label-text">Бажаний час</label>
+                        <select class="form-input" id="timeStr" required>
+                            <option value="">Час...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <label class="label-text">Ваші дані</label>
+                <input type="text" id="userName" class="form-input" placeholder="Ім'я та Прізвище" required>
+                <input type="tel" id="userPhone" class="form-input" placeholder="+380 (__) ___ __ __" required>
+
+                <button type="submit" class="btn-submit">ПІДТВЕРДИТИ ЗАПИС</button>
+                
+                <div class="internal-booking-list">
+                    <h2>Ваші актуальні записи</h2>
+                    <div id="listContainer"></div>
+                </div>
+
+                <p class="footer-small">Натискаючи кнопку, ви погоджуєтесь з обробкою персональних даних</p>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    // 1. ДАНІ
+    const servicesData = {
+        "Волосся": ["Стрижка жіноча", "Денна укладка", "Вечірня укладка", "Весільний стайлінг", "Авторське плетіння", "SPA-відновлення", "Фарбування 1-2 довжина", "Фарбування 3-4 довжина", "Фарбування 5-6 довжина", "Кератин 1-2 довжина", "Кератин 3-4 довжина", "Кератин 5-6 довжина", "Холодне відновлення 1-2 довжина", "Холодне відновлення 3-4 довжина", "Холодне відновлення 5-6 довжина"],
+        "Обличчя": ["Макіяж Node", "Вечірній макіяж", "Весільній макіяж"],
+        "Нігті": ["Манікюр Гігієнічний", "Манікюр з покриттям", "Манікюр 1-2 довжина", "Манікюр 3-4 довжина", "Манікюр 5-6 довжина", "Гігієнічний педикюр", "Педикюр з покриттям"]
+    };
+
+    const mastersData = {
+        "Волосся": ["Олена", "Анастасія", "Анна"],
+        "Обличчя": ["Марія", "Світлана", "Дар'я"],
+        "Нігті": ["Ірина", "Оксана", "Валерія"]
+    };
+
+    const dateInput = document.getElementById('dateStr');
+    const timeSelect = document.getElementById('timeStr');
+    const scheduleText = document.getElementById('current-schedule');
+    const bookingForm = document.getElementById('bookingForm');
+
+    // 2. ГРАФІК РОБОТИ ТА ВАЛІДАЦІЯ ДАТИ
+    // Забороняємо обирати минуле (сьогодні і далі)
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.setAttribute('min', today);
+
+    dateInput.onchange = function() {
+        if (!this.value) return;
+        const date = new Date(this.value);
+        const day = date.getDay(); 
+        
+        let start = (day === 0 || day === 6) ? 10 : 9;
+        let end = (day === 0 || day === 6) ? 18 : 21;
+        
+        scheduleText.innerText = (day === 0 || day === 6) 
+            ? "Графік на вихідні: 10:00 - 18:00" 
+            : "Графік на Пн-Пт: 09:00 - 21:00";
+
+        timeSelect.innerHTML = '<option value="">Оберіть час...</option>';
+        for (let h = start; h < end; h++) {
+            const hour = h < 10 ? `0${h}:00` : `${h}:00`;
+            timeSelect.innerHTML += `<option value="${hour}">${hour}</option>`;
+        }
+    };
+
+    // 3. ОНОВЛЕННЯ СПИСКІВ ПОСЛУГ ТА МАЙСТРІВ
+    function updateLists(cat) {
+        const s = document.getElementById('service');
+        const m = document.getElementById('master');
+        if(!s || !m) return;
+
+        s.innerHTML = `<option value="" disabled selected>Оберіть послугу...</option>` + 
+                      servicesData[cat].map(x => `<option value="${x}">${x}</option>`).join('');
+        m.innerHTML = `<option value="" disabled selected>Оберіть майстра...</option>` + 
+                      mastersData[cat].map(x => `<option value="${x}">${x}</option>`).join('');
+    }
+
+    // 4. ОТРИМАННЯ ЗАПИСІВ (ДЛЯ НИЖНЬОГО СПИСКУ)
+    async function fetchBookings() {
+        try {
+            const res = await fetch('http://localhost:3001/api/booking');
+            if (!res.ok) throw new Error('Помилка мережі');
+            const data = await res.json();
+            const container = document.getElementById('listContainer');
+            
+            if (!data || data.length === 0) {
+                container.innerHTML = "<p style='text-align:center; font-size:11px; color:#888;'>Записів поки немає</p>";
+                return;
+            }
+
+            container.innerHTML = data.map(b => `
+                <div class="booking-item">
+                    <div>
+                        <strong style="color:#612a26; font-size:13px;">${b.service}</strong><br>
+                        <span style="color:#888; font-size:11px;">${b.dateStr || b.date} о ${b.timeStr || b.time || ''}</span>
+                    </div>
+                    <button type="button" onclick="cancelBooking(${b.id})" style="color:#d8534f; border:none; background:none; cursor:pointer; font-size:20px; font-weight:bold;">&times;</button>
+                </div>
+            `).join('');
+        } catch (e) { 
+            console.log("Список не завантажено (можливо, сервер офлайн)");
+        }
+    }
+
+    // 5. СКАСУВАННЯ ЗАПИСУ
+    window.cancelBooking = async function(id) {
+        if (confirm('Ви впевнені, що хочете скасувати запис?')) {
+            try {
+                const res = await fetch(`http://localhost:3001/api/booking/${id}`, { method: 'DELETE' });
+                if (res.ok) fetchBookings();
+            } catch (e) { alert("Помилка при видаленні"); }
+        }
+    };
+
+    // 6. ВІДПРАВКА ФОРМИ (Кнопка ПІДТВЕРДИТИ)
+    bookingForm.onsubmit = async (e) => {
+        e.preventDefault();
+
+        // Збираємо дані. ВАЖЛИВО: ключі мають співпадати з вашим server.js
+        const payload = {
+            service: document.getElementById('service').value,
+            master: document.getElementById('master').value,
+            dateStr: document.getElementById('dateStr').value,
+            timeStr: document.getElementById('timeStr').value,
+            userName: document.getElementById('userName').value,
+            userPhone: document.getElementById('userPhone').value
+        };
+
+        try {
+            const res = await fetch('http://localhost:3001/api/booking', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            const result = await res.json();
+
+            if (res.ok) {
+                const msg = document.getElementById('statusMessage');
+                msg.style.display = "block";
+                msg.style.color = "green";
+                msg.style.borderColor = "green";
+                msg.innerHTML = "✅ Запис успішно створено!";
+                
+                bookingForm.reset(); // Очищуємо форму
+                fetchBookings();    // Оновлюємо список знизу
+
+                // Перенаправлення через 1.5 секунди
+                setTimeout(() => {
+                    window.location.href = "booking.html"; 
+                }, 1500);
+            } else {
+                alert("Помилка сервера: " + (result.error || "Невідома помилка"));
+            }
+        } catch (err) {
+            console.error("Критична помилка:", err);
+            alert("Помилка з'єднання з сервером! Перевірте, чи запущено node server.js");
+        }
+    };
+
+    // 7. ІНІЦІАЛІЗАЦІЯ ТА КЛІКИ
+    updateLists("Волосся");
+    fetchBookings();
+
+    document.querySelectorAll('.category-btn').forEach(btn => {
+        btn.onclick = function() {
+            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            updateLists(this.innerText);
+        };
+    });
+</script>
+
+</body>
+</html>

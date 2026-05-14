@@ -1,0 +1,196 @@
+/* Базові налаштування */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: #1e1e1e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Контейнер картки */
+.auth-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* ЗБІЛЬШЕНО РОЗМІР КАРТКИ "ВХІД" */
+.auth-card {
+    background-color: #ffffff;
+    border-radius: 40px;
+    padding: 50px 40px; /* Збільшено внутрішні відступи */
+    width: 100%;
+    max-width: 480px; /* Було 400px, тепер картка ширша */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.auth-card h2 {
+    font-size: 36px; /* Трохи більший заголовок */
+    margin-bottom: 30px;
+    color: #000;
+}
+
+/* Форма */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Більший відступ між полями */
+}
+
+.input-group {
+    width: 100%;
+    text-align: left;
+}
+
+.input-group input {
+    width: 100%;
+    height: 50px; /* Поля стали вищими */
+    border: 1px solid #612a26;
+    border-radius: 12px;
+    padding: 0 15px;
+    font-size: 16px;
+    outline: none;
+}
+
+.submit-btn {
+    width: 100%;
+    height: 50px; /* Кнопка стала вищою */
+    background-color: #612a26;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #4a1f1c;
+}
+
+/* Посилання */
+.form-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.form-links a {
+    color: #000;
+    text-decoration: none;
+}
+
+.form-links a:hover {
+    text-decoration: underline;
+}
+
+/* Розділювач */
+.social-divider {
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.social-divider::before, .social-divider::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid #ccc;
+}
+
+.social-divider:not(:empty)::before { margin-right: 15px; }
+.social-divider:not(:empty)::after { margin-left: 15px; }
+
+/* Соцмережі */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 10px;
+}
+
+.social-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 55px;
+    height: 55px;
+    background-color: #612a26;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.social-btn svg {
+    width: 28px;
+    height: 28px;
+    fill: white;
+}
+
+.social-btn:hover {
+    background-color: #89504a;
+    transform: translateY(-3px);
+}
+
+/* Модальне вікно */
+.custom-alert {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert-content {
+    background: white;
+    padding: 45px;
+    border-radius: 30px;
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* КНОПКА "ПРОДОВЖИТИ" ТЕПЕР ТАКОГО Ж КОЛЬОРУ ЯК "УВІЙТИ" */
+.alert-btn {
+    background: #612a26; /* Темно-бордовий колір */
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 12px;
+    width: 100%;
+    margin-top: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.alert-btn:hover {
+    background-color: #4a1f1c;
+}
+
+/* Помилки */
+.error-text {
+    color: red;
+    font-size: 12px;
+    display: none;
+    margin-top: 5px;
+}
+.error-text.active { display: block; }
+.input-error { border-color: red !important; }

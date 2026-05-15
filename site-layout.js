@@ -49,7 +49,7 @@
                     <nav class="bw-nav" aria-label="Головна навігація">
                         <ul>${links}</ul>
                     </nav>
-                    <a class="bw-profile-link" href="profile.html">${profileIcon}<span>${profileLabel}</span></a>
+                    <a class="bw-profile-link" href="profile.html" data-profile-link>${profileIcon}<span>${profileLabel}</span></a>
                 </div>
             </header>
         `;
@@ -137,6 +137,13 @@
         document.querySelectorAll('header.main-header, header.header, footer.footer, footer.main-footer').forEach((node) => node.remove());
         document.body.insertAdjacentHTML('afterbegin', buildHeader());
         document.body.insertAdjacentHTML('beforeend', buildFooter());
+
+        document.querySelectorAll('[data-profile-link], .profile-link a').forEach((link) => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                window.location.href = 'profile.html';
+            });
+        });
     }
 
     if (document.readyState === 'loading') {

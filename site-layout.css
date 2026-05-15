@@ -6,13 +6,15 @@
 }
 
 .bw-header-container {
-    max-width: 1200px;
+    width: 100%;
+    max-width: none;
     margin: 0 auto;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     column-gap: 42px;
-    padding: 0 20px;
+    padding: 0 10px;
+    box-sizing: border-box;
 }
 
 .bw-logo {
@@ -23,7 +25,7 @@
 .bw-logo img {
     display: block;
     width: auto;
-    height: 70px;
+    height: 42px;
     object-fit: contain;
 }
 

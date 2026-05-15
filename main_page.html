@@ -8,6 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="main_page.css">
+    <link rel="stylesheet" href="site-layout.css">
+    <script src="site-layout.js" defer></script>
 </head>
 <body>
 
@@ -15,24 +17,27 @@
         <div class="header-container">
             <div class="logo">
                 <img src="img/AC9417D1-98A2-48FC-B5FF-4F9E936E1B3A 1.png">
-                <div class="logo-text">
-                    <span class="brand-name">BEAUTY</span>
-                    <span class="brand-sub">WHISPER</span>
-                </div>
             </div>
 
             <nav class="nav-menu">
                 <ul>
-                    <li><a href="#">Головна</a></li>
-                    <li><a href="#">Про нас</a></li>
-                    <li><a href="#">Послуги</a></li>
-                    <li><a href="#">Відгуки</a></li>
-                    <li><a href="#">Контакти</a></li>
+                    <li><a href="main_page.html">Головна</a></li>
+                    <li><a href="portfolio.html">Про нас</a></li>
+                    <li><a href="services.html">Послуги</a></li>
+                    <li><a href="rewievs.html">Відгуки</a></li>
+                    <li><a href="#contacts">Контакти</a></li>
                 </ul>
             </nav>
 
             <div class="profile-link">
-                <a href="#"><span class="user-icon">👤</span> Профіль</a>
+                <a href="profile.html" onclick="window.location.href='profile.html'; return false;">
+                    <span class="user-icon">
+                        <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 0C9.06087 0 10.0783 0.474106 10.8284 1.31802C11.5786 2.16193 12 3.30653 12 4.5C12 5.69347 11.5786 6.83807 10.8284 7.68198C10.0783 8.52589 9.06087 9 8 9C6.93913 9 5.92172 8.52589 5.17157 7.68198C4.42143 6.83807 4 5.69347 4 4.5C4 3.30653 4.42143 2.16193 5.17157 1.31802C5.92172 0.474106 6.93913 0 8 0ZM8 11.25C12.42 11.25 16 13.2638 16 15.75V18H0V15.75C0 13.2638 3.58 11.25 8 11.25Z" fill="black"/>
+                        </svg>
+                    </span>
+                    Профіль
+                </a>
             </div>
         </div>
     </header>
@@ -46,8 +51,8 @@
                 <h1 class="hero-main-title">BEAUTY WHISPER</h1>
                 <p class="hero-tagline">там де краса говорить сама за себе</p>
                 <div class="hero-actions">
-                    <a href="#" class="btn-primary">Записатися</a>
-                    <a href="#" class="btn-secondary">Наші послуги</a>
+                    <a href="services.html" class="btn-primary">Записатися</a>
+                    <a href="services.html" class="btn-secondary">Наші послуги</a>
                 </div>
             </div>
         </div>
@@ -72,7 +77,7 @@
         <div class="about-item reverse">
     <div class="about-text">
         <div class="about-content">
-            <a href="#" class="btn-more-inline">Дізнатися більше →</a>
+            <a href="portfolio.html" class="btn-more-inline">Дізнатися більше →</a>
         </div>
     </div>
     <div class="about-image">
@@ -213,7 +218,7 @@
                     <span class="current-price">1200 грн</span>
                 </div>
                 
-                <a href="#" class="btn-gradient">Записатися зараз</a>
+                <a href="services.html" class="btn-gradient">Записатися зараз</a>
             </div>
         </div>
 
@@ -271,7 +276,7 @@
             </div>
 
             <div class="team-next">
-        <a href="#" class="next-link">
+        <a href="team.html" class="next-link" aria-label="Перейти на сторінку команди" onclick="window.location.href='team.html'; return false;">
             <svg width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2.99966 54.6667C2.99966 83.2014 26.1316 106.333 54.6663 106.333C83.2011 106.333 106.333 83.2014 106.333 54.6667C106.333 26.132 83.2011 3 54.6663 3C26.1316 3 2.99966 26.132 2.99966 54.6667Z" stroke="#612A26" stroke-width="6"/>
                 <path d="M33.9997 54.6665H75.333M59.833 39.1665L75.333 54.6665L59.833 70.1665" stroke="#612A26" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -341,11 +346,11 @@
                 <div class="footer-col">
                     <h3>МЕНЮ</h3>
                     <ul>
-                        <li><a href="#">Про нас</a></li>
-                        <li><a href="#">Послуги</a></li>
-                        <li><a href="#">Майстри</a></li>
-                        <li><a href="#">Магазин</a></li>
-                        <li><a href="#">Відгуки</a></li>
+                        <li><a href="portfolio.html">Про нас</a></li>
+                        <li><a href="services.html">Послуги</a></li>
+                        <li><a href="team.html">Майстри</a></li>
+                        <li><a href="cart.html">Магазин</a></li>
+                        <li><a href="rewievs.html">Відгуки</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">

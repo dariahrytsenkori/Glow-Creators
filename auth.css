@@ -1,4 +1,4 @@
-/* Базові налаштування */
+﻿/* Базові налаштування */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -35,8 +35,19 @@ body {
 
 .auth-card h2 {
     font-size: 36px; /* Трохи більший заголовок */
-    margin-bottom: 30px;
+    margin-bottom: 12px;
     color: #000;
+}
+.auth-note {
+    display: none;
+    margin: 0 0 26px;
+    color: #5d514f;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.auth-note.active {
+    display: block;
 }
 
 /* Форма */
@@ -194,3 +205,5 @@ body {
 }
 .error-text.active { display: block; }
 .input-error { border-color: red !important; }
+
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,7 @@
     
     <link rel="stylesheet" href="settings.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
+    <script src="account-session.js" defer></script>
     
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-83V3G84WF8"></script>
     <script>
@@ -325,11 +326,12 @@
 
     function logoutUser() {
         // Очищення сесії
-        localStorage.clear();
-        sessionStorage.clear();
+        localStorage.removeItem('currentUser');
         window.location.href = "login.html";
     }
 </script>
 
 </body>
 </html>
+
+

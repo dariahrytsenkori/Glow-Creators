@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beauty Whisper - Кошик</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="account-session.js" defer></script>
     <style>
         :root {
     --main-color: #612a26;
@@ -360,7 +361,7 @@ body {
                     <path d="M42.187 26.1875V23.7969L45.187 21.1719C45.74 20.6845 46.1029 20.0173 46.2115 19.2882C46.3202 18.559 46.1676 17.815 45.7807 17.1875L42.0932 10.9375C41.8192 10.4629 41.4252 10.0687 40.9508 9.7945C40.4763 9.52025 39.9381 9.37559 39.3901 9.37502C39.0505 9.37242 38.7127 9.4252 38.3901 9.53127L34.5932 10.8125C33.9386 10.3755 33.2547 9.98394 32.5464 9.64065L31.7495 5.70315C31.6066 4.98378 31.2152 4.33759 30.6439 3.87768C30.0726 3.41778 29.3578 3.17347 28.6245 3.18752H21.312C20.5787 3.17347 19.8638 3.41778 19.2925 3.87768C18.7212 4.33759 18.3299 4.98378 18.187 5.70315L17.3901 9.64065C16.6775 9.98542 15.9885 10.3769 15.3276 10.8125L11.6089 9.46878C11.2828 9.38381 10.9451 9.35215 10.6089 9.37502C10.0608 9.37559 9.52262 9.52025 9.04817 9.7945C8.57372 10.0687 8.17973 10.4629 7.90573 10.9375L4.21823 17.1875C3.85352 17.8141 3.718 18.5479 3.83487 19.2634C3.95174 19.9789 4.31373 20.6315 4.85885 21.1094L7.81198 23.8125V26.2031L4.85885 28.8281C4.29834 29.3094 3.92644 29.9737 3.80916 30.7031C3.69189 31.4325 3.83682 32.1798 4.21823 32.8125L7.90573 39.0625C8.17973 39.5371 8.57372 39.9313 9.04817 40.2056C9.52262 40.4798 10.0608 40.6245 10.6089 40.625C10.9485 40.6276 11.2862 40.5749 11.6089 40.4688L15.4057 39.1875C16.0604 39.6246 16.7443 40.0161 17.4526 40.3594L18.2495 44.2969C18.3924 45.0163 18.7837 45.6625 19.355 46.1224C19.9263 46.5823 20.6412 46.8266 21.3745 46.8125H28.7495C29.4828 46.8266 30.1976 46.5823 30.7689 46.1224C31.3402 45.6625 31.7316 45.0163 31.8745 44.2969L32.6714 40.3594C33.3839 40.0146 34.0729 39.6232 34.7339 39.1875L38.5151 40.4688C38.8377 40.5749 39.1755 40.6276 39.5151 40.625C40.0631 40.6245 40.6013 40.4798 41.0758 40.2056C41.5502 39.9313 41.9442 39.5371 42.2182 39.0625L45.7807 32.8125C46.1454 32.186 46.281 31.4521 46.1641 30.7366C46.0472 30.0212 45.6852 29.3686 45.1401 28.8906L42.187 26.1875ZM39.3901 37.5L34.0307 35.6875C32.7754 36.7491 31.3417 37.5797 29.7964 38.1406L28.687 43.75H21.312L20.2026 38.2032C18.6694 37.6264 17.2435 36.7973 15.9839 35.75L10.6089 37.5L6.92135 31.25L11.1714 27.5C10.8824 25.8826 10.8824 24.2268 11.1714 22.6094L6.92135 18.75L10.6089 12.5L15.9682 14.3125C17.2236 13.2509 18.6572 12.4204 20.2026 11.8594L21.312 6.25002H28.687L29.7964 11.7969C31.3296 12.3736 32.7555 13.2028 34.0151 14.25L39.3901 12.5L43.0776 18.75L38.8276 22.5C39.1165 24.1174 39.1165 25.7732 38.8276 27.3906L43.0776 31.25L39.3901 37.5Z" fill="url(#paint0_linear_825_3059)"/><path d="M25 34.375C23.1458 34.375 21.3332 33.8252 19.7915 32.795C18.2498 31.7649 17.0482 30.3007 16.3386 28.5877C15.6291 26.8746 15.4434 24.9896 15.8051 23.171C16.1669 21.3525 17.0598 19.682 18.3709 18.3709C19.682 17.0598 21.3525 16.1669 23.171 15.8051C24.9896 15.4434 26.8746 15.6291 28.5877 16.3386C30.3007 17.0482 31.7649 18.2498 32.795 19.7915C33.8252 21.3332 34.375 23.1458 34.375 25C34.3875 26.2346 34.1536 27.4594 33.6869 28.6024C33.2202 29.7455 32.5301 30.784 31.6571 31.6571C30.784 32.5301 29.7455 33.2202 28.6024 33.6869C27.4594 34.1536 26.2346 34.3875 25 34.375ZM25 18.75C24.174 18.7308 23.3526 18.8793 22.5857 19.1866C21.8187 19.4938 21.122 19.9535 20.5377 20.5377C19.9535 21.122 19.4938 21.8187 19.1866 22.5857C18.8793 23.3526 18.7308 24.174 18.75 25C18.7308 25.826 18.8793 26.6474 19.1866 27.4144C19.4938 28.1813 19.9535 28.878 20.5377 29.4623C21.122 30.0465 21.8187 30.5062 22.5857 30.8135C23.3526 31.1207 24.174 31.2692 25 31.25C25.826 31.2692 26.6474 31.1207 27.4144 30.8135C28.1813 30.5062 28.878 30.0465 29.4623 29.4623C30.0465 28.878 30.5062 28.1813 30.8135 27.4144C31.1207 26.6474 31.2692 25.826 31.25 25C31.2692 24.174 31.1207 23.3526 30.8135 22.5857C30.5062 21.8187 30.0465 21.122 29.4623 20.5377C28.878 19.9535 28.1813 19.4938 27.4144 19.1866C26.6474 18.8793 25.826 18.7308 25 18.75Z" fill="url(#paint1_linear_825_3059)"/><defs><linearGradient id="paint0_linear_825_3059" x1="3.76953" y1="25" x2="46.2457" y2="25" gradientUnits="userSpaceOnUse"><stop stop-color="#EEE4E0"/><stop offset="0.5" stop-color="#F7F2F0"/><stop offset="1" stop-color="#EEE4E0"/></linearGradient><linearGradient id="paint1_linear_825_3059" x1="15.625" y1="25.0002" x2="34.3755" y2="25.0002" gradientUnits="userSpaceOnUse"><stop stop-color="#EEE4E0"/><stop offset="0.5" stop-color="#F7F2F0"/><stop offset="1" stop-color="#EEE4E0"/></linearGradient></defs>
                 </svg> Налаштування
             </a>   
-            <a href="login.html" class="nav-link logout" onclick="localStorage.clear()">
+            <a href="login.html" class="nav-link logout" onclick="localStorage.removeItem('currentUser')">
                 <svg width="45" height="45" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M22.5 5.625C22.9779 5.62553 23.4376 5.80852 23.7851 6.13659C24.1326 6.46466 24.3417 6.91304 24.3697 7.39012C24.3977 7.86719 24.2425 8.33696 23.9358 8.70344C23.629 9.06991 23.1939 9.30543 22.7194 9.36188L22.5 9.375H13.125C12.6658 9.37506 12.2225 9.54367 11.8793 9.84884C11.5361 10.154 11.3169 10.5745 11.2631 11.0306L11.25 11.25V33.75C11.2501 34.2092 11.4187 34.6525 11.7238 34.9957C12.029 35.3389 12.4495 35.5581 12.9056 35.6119L13.125 35.625H21.5625C22.0404 35.6255 22.5001 35.8085 22.8476 36.1366C23.1951 36.4647 23.4042 36.913 23.4322 37.3901C23.4602 37.8672 23.305 38.337 22.9983 38.7034C22.6915 39.0699 22.2564 39.3054 21.7819 39.3619L21.5625 39.375H13.125C11.6902 39.3751 10.3097 38.8269 9.26576 37.8426C8.22186 36.8583 7.59355 35.5123 7.50938 34.08L7.5 33.75V11.25C7.49992 9.81523 8.04811 8.43466 9.03241 7.39076C10.0167 6.34686 11.3627 5.71855 12.795 5.63438L13.125 5.625H22.5ZM33.2006 15.87L38.5031 21.1744C38.8546 21.526 39.0521 22.0028 39.0521 22.5C39.0521 22.9972 38.8546 23.474 38.5031 23.8256L33.2006 29.13C32.8488 29.4816 32.3717 29.679 31.8743 29.6788C31.377 29.6786 30.9 29.4809 30.5484 29.1291C30.1969 28.7772 29.9994 28.3002 29.9996 27.8028C29.9998 27.3054 30.1975 26.8285 30.5494 26.4769L32.6513 24.375H22.5C22.0027 24.375 21.5258 24.1775 21.1742 23.8258C20.8225 23.4742 20.625 22.9973 20.625 22.5C20.625 22.0027 20.8225 21.5258 21.1742 21.1742C21.5258 20.8225 22.0027 20.625 22.5 20.625H32.6513L30.5494 18.5231C30.1975 18.1715 29.9998 17.6946 29.9996 17.1972C29.9994 16.6998 30.1969 16.2228 30.5484 15.8709C30.9 15.5191 31.377 15.3214 31.8743 15.3212C32.3717 15.321 32.8488 15.5184 33.2006 15.87Z" fill="url(#paint0_linear_825_3082)"/>
                     <defs>
@@ -401,70 +402,60 @@ body {
         const calendarIcon = "https://cdn-icons-png.flaticon.com/512/3652/3652191.png";
 
         function loadCart() {
-            const list = document.getElementById('cart-list');
-            const totalVal = document.getElementById('total-val');
-            const discountVal = document.getElementById('discount-val');
-            const checkoutBtn = document.getElementById('checkout-btn');
-            
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const list = document.getElementById('cart-list');
+    const totalVal = document.getElementById('total-val');
+    const discountVal = document.getElementById('discount-val');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-            if (cart.length === 0) {
-                list.innerHTML = '<p style="color:#999; text-align:center; padding:40px; font-size: 14px;">Ваш кошик порожній</p>';
-                totalVal.innerText = '0 грн';
-                discountVal.innerText = '0%';
-                checkoutBtn.disabled = true;
-                return;
-            }
+    if (cart.length === 0) {
+        list.innerHTML = '<p style="color:#999; text-align:center; padding:40px; font-size: 14px;">Ваш кошик порожній</p>';
+        totalVal.innerText = '0 грн';
+        discountVal.innerText = '0%';
+        checkoutBtn.disabled = true;
+        return;
+    }
 
-            checkoutBtn.disabled = false;
-            let rawSum = 0;
+    checkoutBtn.disabled = false;
+    let rawSum = 0;
 
-            list.innerHTML = cart.map((item, index) => {
-                const price = parseInt(item.price) || 0;
-                rawSum += price;
-                
-                // Відображаємо тільки ім'я майстра (перше слово)
-                const shortMaster = item.master ? item.master.split(' ')[0] : 'Майстер';
-                
-                return `
-                    <div class="cart-item">
-                        <div class="item-icon-box">
-                            <img src="${calendarIcon}" alt="icon">
-                        </div>
-                        <div class="item-info">
-                            <div class="item-name">${item.name}</div>
-                            <div class="item-details">
-                                ${item.date || 'Дата уточнюється'}<br>
-                                ${shortMaster}
-                            </div>
-                        </div>
-                        <div class="item-right">
-                            <div class="item-price">${price} грн</div>
-                            <button class="btn-remove" onclick="deleteItem(${index})">Видалити</button>
-                        </div>
+    list.innerHTML = cart.map((item, index) => {
+        const price = parseInt(item.price) || 0;
+        rawSum += price;
+        
+        // Перевірка на наявність майстра і дати, щоб не було помилок
+        const displayMaster = item.master ? item.master.split(' ')[0] : 'Майстер';
+        const displayDate = item.date || 'Дата уточнюється';
+        
+        return `
+            <div class="cart-item">
+                <div class="item-icon-box">
+                    <img src="${calendarIcon}" alt="icon">
+                </div>
+                <div class="item-info">
+                    <div class="item-name">${item.name}</div>
+                    <div class="item-details">
+                        ${displayDate}<br>
+                        ${displayMaster}
                     </div>
-                `;
-            }).join('');
+                </div>
+                <div class="item-right">
+                    <div class="item-price">${price} грн</div>
+                    <button class="btn-remove" onclick="deleteItem(${index})">Видалити</button>
+                </div>
+            </div>
+        `;
+    }).join('');
 
-            // ЛОГІКА ЗНИЖОК (твої правила)
-            let discountPercent = 0;
-            if (rawSum > 10000) {
-                discountPercent = 15;
-            } else if (rawSum >= 5001) {
-                discountPercent = 10;
-            } else if (rawSum >= 2001) {
-                discountPercent = 7;
-            } else if (rawSum > 0) {
-                discountPercent = 3;
-            }
+    // Логіка знижок
+    let discountPercent = (rawSum > 10000) ? 15 : (rawSum >= 5001) ? 10 : (rawSum >= 2001) ? 7 : (rawSum > 0 ? 3 : 0);
+    const discountAmount = (rawSum * discountPercent) / 100;
+    const finalSum = rawSum - discountAmount;
 
-            const discountAmount = (rawSum * discountPercent) / 100;
-            const finalSum = rawSum - discountAmount;
-
-            // Оновлення інтерфейсу
-            discountVal.innerText = `${discountPercent}% (-${Math.round(discountAmount)} грн)`;
-            totalVal.innerText = `${Math.round(finalSum)} грн`;
-        }
+    discountVal.innerText = `${discountPercent}% (-${Math.round(discountAmount)} грн)`;
+    totalVal.innerText = `${Math.round(finalSum)} грн`;
+}
 
         function deleteItem(idx) {
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -491,3 +482,5 @@ body {
     </script>
 </body>
 </html>
+
+

@@ -1,0 +1,150 @@
+﻿(function () {
+    const profileIcon = `
+        <span class="bw-profile-icon" aria-hidden="true">
+            <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 0C9.06087 0 10.0783 0.474106 10.8284 1.31802C11.5786 2.16193 12 3.30653 12 4.5C12 5.69347 11.5786 6.83807 10.8284 7.68198C10.0783 8.52589 9.06087 9 8 9C6.93913 9 5.92172 8.52589 5.17157 7.68198C4.42143 6.83807 4 5.69347 4 4.5C4 3.30653 4.42143 2.16193 5.17157 1.31802C5.92172 0.474106 6.93913 0 8 0ZM8 11.25C12.42 11.25 16 13.2638 16 15.75V18H0V15.75C0 13.2638 3.58 11.25 8 11.25Z" fill="black"/>
+            </svg>
+        </span>
+    `;
+
+    const navItems = [
+        { href: 'main_page.html', label: 'Головна', match: ['main_page.html', 'index.html'] },
+        { href: 'portfolio.html', label: 'Про нас', match: ['portfolio.html'] },
+        { href: 'services.html', label: 'Послуги', match: ['services.html'] },
+        { href: 'rewievs.html', label: 'Відгуки', match: ['rewievs.html', 'reviews.html'] },
+        { href: '#contacts', label: 'Контакти', match: [] }
+    ];
+
+    function currentPage() {
+        const file = window.location.pathname.split('/').pop();
+        return file || 'main_page.html';
+    }
+
+    function isActive(item) {
+        return item.match.includes(currentPage());
+    }
+    function getCurrentUserName() {
+        try {
+            const user = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            return user ? (user.firstName || user.name || '').trim() : '';
+        } catch (error) {
+            localStorage.removeItem('currentUser');
+            return '';
+        }
+    }
+
+    function buildHeader() {
+        const links = navItems.map((item) => {
+            const className = isActive(item) ? ' class="active"' : '';
+            return `<li><a href="${item.href}"${className}>${item.label}</a></li>`;
+        }).join('');
+        const profileLabel = getCurrentUserName() || 'Профіль';
+
+        return `
+            <header class="bw-header">
+                <div class="bw-header-container">
+                    <a class="bw-logo" href="main_page.html" aria-label="Beauty Whisper">
+                        <img src="img/AC9417D1-98A2-48FC-B5FF-4F9E936E1B3A 1.png" alt="Beauty Whisper">
+                    </a>
+                    <nav class="bw-nav" aria-label="Головна навігація">
+                        <ul>${links}</ul>
+                    </nav>
+                    <a class="bw-profile-link" href="profile.html">${profileIcon}<span>${profileLabel}</span></a>
+                </div>
+            </header>
+        `;
+    }
+
+    function buildFooter() {
+        return `
+            <footer class="bw-footer" id="contacts">
+                <div class="bw-footer-container">
+                    <div class="bw-footer-info">
+                        <h2 class="bw-footer-headline">Спілкуймося мовою краси</h2>
+                        <p class="bw-footer-subtext">Ваш простір для відновлення, краси та натхнення. Завітайте до нас та пориньте у світ спокою.</p>
+                        <div class="bw-footer-details">
+                            <div class="bw-footer-col">
+                                <h3>Меню</h3>
+                                <ul>
+                                    <li><a href="portfolio.html">Про нас</a></li>
+                                    <li><a href="services.html">Послуги</a></li>
+                                    <li><a href="team.html">Майстри</a></li>
+                                    <li><a href="rewievs.html">Відгуки</a></li>
+                                </ul>
+                            </div>
+                            <div class="bw-footer-col">
+                                <h3>Графік роботи</h3>
+                                <p>Пн-Пт: 09:00 - 21:00</p>
+                                <p>Сб: 10:00 - 19:00</p>
+                                <p>Нд: 10:00 - 17:00</p>
+                            </div>
+                            <div class="bw-footer-col">
+                                <h3>Контакти</h3>
+                                <p class="bw-footer-contact">
+                                    <svg width="15" height="19" viewBox="0 0 15 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M6.80175 17.9925C6.95759 18.1026 7.15009 18.1667 7.33342 18.1667C7.51675 18.1667 7.70925 18.1117 7.86509 17.9925C8.14009 17.7909 14.6943 13.0701 14.6668 7.15755C14.6668 3.11505 11.3759 -0.175781 7.33342 -0.175781C3.29092 -0.175781 8.62945e-05 3.11505 8.62945e-05 7.15755C-0.0274137 13.0609 6.52675 17.7909 6.80175 17.9925ZM7.33342 1.66672C10.3676 1.66672 12.8334 4.13255 12.8334 7.16672C12.8518 11.2367 8.80925 14.8942 7.33342 16.0951C5.85759 14.8942 1.81509 11.2459 1.83342 7.16672C1.83342 4.13255 4.29925 1.66672 7.33342 1.66672Z" fill="white"/>
+                                    </svg>
+                                    <a href="https://maps.app.goo.gl/DMKuTeeGrkvdy9TSA?g_st=ic" target="_blank" rel="noreferrer">вул. Велика Васильківська, 100, Київ</a>
+                                </p>
+                                <p class="bw-footer-contact">
+                                    <svg width="18" height="17" viewBox="0 0 18 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M2.27611 -0.127304C3.39169 -1.23647 5.22869 -1.03939 6.16277 0.209113L7.31961 1.75278C8.08044 2.76845 8.01261 4.18745 7.10969 5.08486L6.89152 5.30303C6.86678 5.39461 6.86427 5.49078 6.88419 5.58353C6.94194 5.95753 7.25452 6.74953 8.56352 8.0512C9.87252 9.35286 10.67 9.66453 11.0495 9.7232C11.1452 9.74243 11.2439 9.73961 11.3383 9.71495L11.7123 9.34278C12.5153 8.54528 13.7473 8.39586 14.7409 8.93578L16.4918 9.88911C17.9924 10.7031 18.3709 12.7418 17.1426 13.9637L15.84 15.258C15.4294 15.6659 14.8775 16.006 14.2047 16.0693C12.5455 16.2242 8.67994 16.0262 4.61636 11.9864C0.824108 8.21528 0.0962748 4.92628 0.00369142 3.30561C-0.0421419 2.48611 0.344691 1.79311 0.837858 1.30361L2.27611 -0.127304ZM5.06277 1.0332C4.59802 0.412613 3.73269 0.363113 3.24502 0.84803L1.80586 2.27803C1.50336 2.5787 1.35852 2.91053 1.37686 3.2277C1.45019 4.51561 2.03686 7.48286 5.58619 11.012C9.30969 14.7135 12.7481 14.8244 14.0773 14.6998C14.3486 14.675 14.6181 14.5339 14.8702 14.2836L16.1719 12.9884C16.7017 12.4622 16.5853 11.5034 15.8354 11.0964L14.0846 10.1439C13.6006 9.88178 13.0341 9.96795 12.6821 10.3181L12.265 10.7334L11.7792 10.2457C12.265 10.7334 12.2632 10.7343 12.2632 10.7343L12.2623 10.7361L12.2595 10.7389L12.2531 10.7444L12.2394 10.7572C12.2007 10.7931 12.159 10.8256 12.1147 10.8544C12.0414 10.9029 11.9442 10.957 11.8223 11.0019C11.5748 11.0945 11.2466 11.144 10.8414 11.0817C10.0467 10.9598 8.99344 10.418 7.59369 9.02653C6.19486 7.63503 5.64852 6.5882 5.52569 5.79436C5.46244 5.3892 5.51286 5.06103 5.60636 4.81353C5.65782 4.67426 5.73149 4.54424 5.82452 4.42853L5.85386 4.39645L5.86669 4.3827L5.87219 4.3772L5.87494 4.37445L5.87677 4.37261L6.14078 4.11045C6.53311 3.71903 6.58811 3.07095 6.21869 2.57686L5.06277 1.0332Z" fill="white"/>
+                                    </svg>
+                                    <span>+380 44 123 45 67</span>
+                                </p>
+                                <p class="bw-footer-contact">
+                                    <svg width="19" height="15" viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M18.3333 1.83333C18.3333 0.825 17.5083 0 16.5 0H1.83333C0.825 0 0 0.825 0 1.83333V12.8333C0 13.8417 0.825 14.6667 1.83333 14.6667H16.5C17.5083 14.6667 18.3333 13.8417 18.3333 12.8333V1.83333ZM16.5 1.83333L9.16667 6.41667L1.83333 1.83333H16.5ZM16.5 12.8333H1.83333V3.66667L9.16667 8.25L16.5 3.66667V12.8333Z" fill="white"/>
+                                    </svg>
+                                    <span>beautywhisper101@gmail.com</span>
+                                </p>
+                                <p class="bw-footer-contact">
+                                    <a href="https://www.instagram.com/beauty_whisper_7?igsh=bWg2anMzOG15dTd4&utm_source=qr" target="_blank" rel="noreferrer">
+                                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                                            <rect x="3" y="3" width="18" height="18" rx="5" stroke="white" stroke-width="2"/>
+                                            <circle cx="12" cy="12" r="4" stroke="white" stroke-width="2"/>
+                                            <circle cx="17.2" cy="6.8" r="1.2" fill="white"/>
+                                        </svg>
+                                        <span>Instagram</span>
+                                    </a>
+                                </p>
+                                <p class="bw-footer-contact">
+                                    <a href="https://t.me/beauty_whisper_bot" target="_blank" rel="noreferrer">
+                                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M21 4L3.8 10.8C3.05 11.1 3.1 12.18 3.88 12.4L8.6 13.78L10.35 19.12C10.6 19.88 11.6 20.03 12.05 19.37L14.62 15.62L19.4 19.1C20.08 19.6 21.05 19.22 21.2 18.38L22.78 5.35C22.92 4.42 21.87 3.65 21 4Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+                                            <path d="M8.75 13.65L21.55 4.35" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                                            <path d="M10.35 19.1L10.55 14.55L21.55 4.35" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                        <span>Telegram</span>
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bw-footer-visual">
+                        <div class="bw-footer-image-box">
+                            <img src="img/A1E8C885-DA27-46F7-B264-31212F5F3BBE.PNG" alt="Salon Interior">
+                        </div>
+                        <h2 class="bw-footer-logo-title">Beauty Whisper</h2>
+                    </div>
+                </div>
+                <div class="bw-footer-copyright">© 2026 Beauty Whisper. Всі Права Захищено.</div>
+            </footer>
+        `;
+    }
+
+    function installLayout() {
+        document.querySelectorAll('header.main-header, header.header, footer.footer, footer.main-footer').forEach((node) => node.remove());
+        document.body.insertAdjacentHTML('afterbegin', buildHeader());
+        document.body.insertAdjacentHTML('beforeend', buildFooter());
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', installLayout);
+    } else {
+        installLayout();
+    }
+})();
+
+
+

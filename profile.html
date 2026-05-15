@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="profile.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">
+<script src="account-session.js" defer></script>
 <title>Профіль</title>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-83V3G84WF8"></script>
@@ -262,29 +263,39 @@ fbq('track', 'PageView');
     // ЛОГІКА БАЗИ ДАНИХ ТА МОДАЛЬНОГО ВІКНА
     // ==========================================
 
-    // Імітація даних, які приходять з бази (Бекенд)
-    let userData = {
-        firstName: "Олена",
-        lastName: "Петренко",
-        dob: "15.03.1995",
-        email: "olena.petrenko@email.com",
-        phone: "+380 (67) 123-4567",
-        city: "Київ",
-        bonusPoints: 485
-    };
+    function normalizeUserData(user) {
+        return {
+            id: user.id || user.user_id || null,
+            firstName: user.firstName || user.name || '',
+            lastName: user.lastName || user.surname || '',
+            dob: user.dob || 'Не вказано',
+            email: user.email || '',
+            phone: user.phone || '',
+            city: user.city || 'Не вказано',
+            bonusPoints: Number(user.bonusPoints) || 0
+        };
+    }
+
+    function getStoredUser() {
+        try {
+            const rawUser = localStorage.getItem('currentUser');
+            return rawUser ? normalizeUserData(JSON.parse(rawUser)) : null;
+        } catch (error) {
+            localStorage.removeItem('currentUser');
+            return null;
+        }
+    }
+
+    let userData = getStoredUser();
 
     // 1. ЗАВАНТАЖЕННЯ ДАНИХ НА СТОРІНКУ
     window.onload = function() {
-        // РОБОЧИЙ КОД ДЛЯ БЕКЕНДУ:
-        /*
-        fetch('/api/user/profile')
-            .then(res => res.json())
-            .then(data => {
-                userData = data; 
-                renderProfile();
-            });
-        */
-        renderProfile(); // Поки немає бекенду, малюємо з нашої імітації userData
+        if (!userData) {
+            window.location.href = 'login.html?return=profile.html';
+            return;
+        }
+
+        renderProfile();
     };
 
     // Функція, яка бере дані з userData і вставляє в HTML
@@ -331,6 +342,7 @@ fbq('track', 'PageView');
     function saveProfileData() {
         // Збираємо дані, які юзер ввів в інпути
         const updatedData = {
+            id: userData.id,
             firstName: document.getElementById('inputName').value,
             lastName: document.getElementById('inputSurname').value,
             dob: document.getElementById('inputDob').value,
@@ -359,14 +371,23 @@ fbq('track', 'PageView');
 
         // Імітація успішного збереження для фронтенду
         userData = updatedData;
+        localStorage.setItem('currentUser', JSON.stringify({
+            id: updatedData.id,
+            name: updatedData.firstName,
+            surname: updatedData.lastName,
+            dob: updatedData.dob,
+            email: updatedData.email,
+            phone: updatedData.phone,
+            city: updatedData.city,
+            bonusPoints: updatedData.bonusPoints
+        }));
         renderProfile();
         closeEditModal();
     }
     function logoutUser() {
     // 1. Очищаємо всі збережені дані користувача з пам'яті браузера
     // Це зітре інформацію про те, що людина була авторизована
-    localStorage.clear();
-    sessionStorage.clear();
+    localStorage.removeItem('currentUser');
 
     // 2. Робимо запит на бекенд (коли він буде), щоб закрити сесію на сервері
     /*
@@ -383,3 +404,5 @@ fbq('track', 'PageView');
 
 </body>
 </html>
+
+

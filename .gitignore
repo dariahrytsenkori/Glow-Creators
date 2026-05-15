@@ -1,0 +1,5 @@
+bd.env
+node_modules/
+.idea/
+*.env
+*.sql

@@ -2,19 +2,19 @@
     background: #fff;
     border-bottom: 1px solid #eeeeee;
     font-family: 'Inter', 'Montserrat', Arial, sans-serif;
-    min-height: 54px;
+    min-height: 100px;
 }
 
 .bw-header-container {
-    width: 100%;
-    max-width: 980px;
-    min-height: 54px;
+    width: calc(100% - 400px);
+    max-width: 1600px;
+    min-height: 100px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
-    column-gap: 32px;
-    padding: 0 16px;
+    column-gap: 44px;
+    padding: 0;
     box-sizing: border-box;
 }
 
@@ -26,7 +26,7 @@
 .bw-logo img {
     display: block;
     width: auto;
-    height: 34px;
+    height: 82px;
     object-fit: contain;
 }
 
@@ -35,7 +35,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 30px;
+    gap: 50px;
     margin: 0;
     padding: 0;
 }
@@ -44,7 +44,7 @@
 .bw-profile-link {
     color: #111111;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 18px;
     font-weight: 500;
     line-height: 1;
 }
@@ -61,8 +61,9 @@
 .bw-profile-link {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     font-weight: 500;
+    margin-left: 10px;
     white-space: nowrap;
 }
 
@@ -70,15 +71,15 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 12px;
-    height: 14px;
-    flex: 0 0 12px;
+    width: 16px;
+    height: 18px;
+    flex: 0 0 16px;
 }
 
 .bw-profile-icon svg {
     display: block;
-    width: 12px;
-    height: 14px;
+    width: 16px;
+    height: 18px;
 }
 
 .bw-footer {
@@ -202,10 +203,31 @@
     opacity: 0.65;
 }
 
+@media (max-width: 1500px) {
+    .bw-header-container {
+        width: calc(100% - 96px);
+    }
+
+    .bw-logo img {
+        height: 64px;
+    }
+
+    .bw-nav ul {
+        gap: 34px;
+    }
+
+    .bw-nav a,
+    .bw-profile-link {
+        font-size: 16px;
+    }
+}
+
 @media (max-width: 900px) {
     .bw-header-container {
+        width: calc(100% - 32px);
         grid-template-columns: 1fr;
         row-gap: 16px;
+        padding: 16px 0;
     }
 
     .bw-nav ul {

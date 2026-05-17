@@ -1,19 +1,20 @@
 .bw-header {
     background: #fff;
     border-bottom: 1px solid #eeeeee;
-    padding: 15px 0;
     font-family: 'Inter', 'Montserrat', Arial, sans-serif;
+    min-height: 54px;
 }
 
 .bw-header-container {
     width: 100%;
-    max-width: none;
+    max-width: 980px;
+    min-height: 54px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
-    column-gap: 42px;
-    padding: 0 10px;
+    column-gap: 32px;
+    padding: 0 16px;
     box-sizing: border-box;
 }
 
@@ -25,7 +26,7 @@
 .bw-logo img {
     display: block;
     width: auto;
-    height: 42px;
+    height: 34px;
     object-fit: contain;
 }
 
@@ -34,7 +35,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 34px;
+    gap: 30px;
     margin: 0;
     padding: 0;
 }
@@ -43,22 +44,25 @@
 .bw-profile-link {
     color: #111111;
     text-decoration: none;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 500;
     line-height: 1;
 }
 
 .bw-nav a:hover,
-.bw-nav a.active,
 .bw-profile-link:hover {
     color: #612a26;
+}
+
+.bw-nav a.active {
+    color: #111111;
 }
 
 .bw-profile-link {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    font-weight: 600;
+    gap: 6px;
+    font-weight: 500;
     white-space: nowrap;
 }
 
@@ -66,15 +70,15 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 16px;
-    height: 18px;
-    flex: 0 0 16px;
+    width: 12px;
+    height: 14px;
+    flex: 0 0 12px;
 }
 
 .bw-profile-icon svg {
     display: block;
-    width: 16px;
-    height: 18px;
+    width: 12px;
+    height: 14px;
 }
 
 .bw-footer {

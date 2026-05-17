@@ -2,18 +2,18 @@
     background: #fff;
     border-bottom: 1px solid #eeeeee;
     font-family: 'Inter', 'Montserrat', Arial, sans-serif;
-    min-height: 100px;
+    min-height: 72px;
 }
 
 .bw-header-container {
     width: calc(100% - 400px);
-    max-width: 1600px;
-    min-height: 100px;
+    max-width: 1400px;
+    min-height: 72px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
-    column-gap: 44px;
+    column-gap: 48px;
     padding: 0;
     box-sizing: border-box;
 }
@@ -26,7 +26,7 @@
 .bw-logo img {
     display: block;
     width: auto;
-    height: 82px;
+    height: 52px;
     object-fit: contain;
 }
 
@@ -35,7 +35,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    gap: 50px;
+    gap: 38px;
     margin: 0;
     padding: 0;
 }
@@ -44,7 +44,7 @@
 .bw-profile-link {
     color: #111111;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1;
 }
@@ -209,7 +209,7 @@
     }
 
     .bw-logo img {
-        height: 64px;
+        height: 48px;
     }
 
     .bw-nav ul {
@@ -218,7 +218,7 @@
 
     .bw-nav a,
     .bw-profile-link {
-        font-size: 16px;
+        font-size: 14px;
     }
 }
 

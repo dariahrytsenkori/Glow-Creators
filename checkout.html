@@ -3,209 +3,337 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Оформлення замовлення - Beauty Whisper</title>
+    <title>Оформлення запису | Beauty Whisper</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root { --main-color: #612a26; --bg: #fcfcfc; }
-        body { font-family: 'Montserrat', sans-serif; background: var(--bg); margin: 0; color: #333; }
-        
-        .header { width: 100%; background: #fff; padding: 20px 0; display: flex; justify-content: center; border-bottom: 1px solid #f0f0f0; }
-        .nav-menu { display: flex; list-style: none; gap: 30px; padding: 0; margin: 0; }
-        .nav-menu a { text-decoration: none; color: #333; font-size: 14px; }
-        .nav-menu a.active { color: var(--main-color); font-weight: 700; }
+        :root {
+            --main-color: #612a26;
+            --bg-color: #fcfcfc;
+            --text-dark: #2c2c2c;
+            --text-gray: #8b8b8b;
+            --border-color: #e8e8e8;
+        }
 
-        .container { max-width: 1100px; margin: 40px auto; padding: 0 20px; display: grid; grid-template-columns: 1fr 380px; gap: 30px; }
-        
-        .card { background: #fff; padding: 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.02); margin-bottom: 25px; }
-        h1 { font-size: 28px; margin-bottom: 30px; }
-        h2 { font-size: 18px; margin-bottom: 20px; font-weight: 700; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--text-dark);
+            padding: 24px;
+            box-sizing: border-box;
+        }
 
-        .service-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 15px; }
-        .service-row span:last-child { font-weight: 700; }
+        .checkout-container {
+            background: white;
+            width: 100%;
+            max-width: 520px;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f0f0f0;
+        }
 
-        .discount-info { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
-        .badge { background: var(--main-color); color: white; padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: 700; }
-        
-        .bonus-box { background: #f9f9f9; padding: 15px 20px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; }
-        .apply-btn { background: var(--main-color); color: white; border: none; padding: 10px 20px; border-radius: 12px; cursor: pointer; font-weight: 600; }
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0 0 30px;
+            text-align: center;
+        }
 
-        .pay-option { border: 1px solid #eee; padding: 18px; border-radius: 15px; margin-bottom: 12px; cursor: pointer; display: flex; align-items: center; gap: 12px; transition: 0.2s; }
-        .pay-option.active { border: 2px solid var(--main-color); background: #fff8f8; }
-        .pay-option input { accent-color: var(--main-color); width: 18px; height: 18px; }
-        .pay-option label { cursor: pointer; flex-grow: 1; font-weight: 500; }
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-        .summary-details div { display: flex; justify-content: space-between; margin-bottom: 12px; color: #777; }
-        .discount-line { color: #27ae60; font-weight: 500; }
-        .total-pay { border-top: 1px solid #eee; padding-top: 20px; margin-top: 10px; font-size: 22px; font-weight: 700; display: flex; justify-content: space-between; }
-        
-        .main-btn { width: 100%; background: var(--main-color); color: white; border: none; padding: 18px; border-radius: 50px; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 25px; transition: 0.3s; }
-        .main-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(97, 42, 38, 0.2); }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            box-sizing: border-box;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: var(--main-color);
+        }
+
+        .order-summary {
+            background: #fdfaf9;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .summary-line,
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .summary-total {
+            border-top: 1px solid #eee;
+            padding-top: 12px;
+            margin-top: 12px;
+            margin-bottom: 0;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--main-color);
+        }
+
+        .empty-cart {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .btn-confirm {
+            width: 100%;
+            background-color: var(--main-color);
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 14px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .btn-confirm:hover:not(:disabled) {
+            background-color: #4a1f1c;
+            transform: translateY(-1px);
+        }
+
+        .btn-confirm:disabled {
+            opacity: 0.65;
+            cursor: not-allowed;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 13px;
+        }
     </style>
 </head>
 <body>
 
-<header class="header">
-    <nav>
-        <ul class="nav-menu">
-            <li><a href="#">Головна</a></li>
-            <li><a href="#">Послуги</a></li>
-            <li><a href="cart.html">Кошик</a></li>
-            <li><a href="checkout.html" class="active">Оформлення</a></li>
-        </ul>
-    </nav>
-</header>
+<div class="checkout-container">
+    <h2>Підтвердження запису</h2>
 
-<div class="container">
-    <div class="main-content">
-        <h1>Оформлення замовлення</h1>
-        
-        <div class="card">
-            <h2>Ваші послуги</h2>
-            <div id="checkout-services-list"></div>
+    <form id="checkout-form">
+        <div class="form-group">
+            <label for="cust-name">Ваше ім'я</label>
+            <input type="text" id="cust-name" placeholder="Введіть ім'я" required>
         </div>
 
-        <div class="card">
-            <div class="discount-info">
-                <h2>Ваша постійна знижка</h2>
-                <span id="discount-badge" class="badge">0%</span>
-            </div>
-            <p style="color:#888; font-size:14px; margin-bottom:20px;">Знижка розраховується автоматично від суми замовлення.</p>
-            <div class="bonus-box">
-                <span>У вас також є <b>250 бонусів</b></span>
-                <button class="apply-btn" id="bonus-btn" onclick="toggleBonus()">Застосувати</button>
-            </div>
+        <div class="form-group">
+            <label for="cust-phone">Номер телефону</label>
+            <input type="tel" id="cust-phone" placeholder="+380" required>
         </div>
 
-        <div class="card">
-            <h2>Спосіб оплати</h2>
-            <div class="pay-option active" onclick="selectPayment(this)">
-                <input type="radio" name="pay" id="pay_online" checked>
-                <label for="pay_online">Онлайн-оплата (Картка / Apple Pay / Google Pay)</label>
-            </div>
-            <div class="pay-option" onclick="selectPayment(this)">
-                <input type="radio" name="pay" id="pay_salon">
-                <label for="pay_salon">Оплата в салоні (готівка або термінал)</label>
-            </div>
+        <div class="form-group">
+            <label for="cust-email">Email для квитанції</label>
+            <input type="email" id="cust-email" placeholder="name@example.com" required>
         </div>
-    </div>
 
-    <div class="sidebar">
-        <div class="card">
-            <h2>Підсумок</h2>
-            <div class="summary-details">
-                <div><span>Послуги:</span> <span id="res-base">0 грн</span></div>
-                <div class="discount-line"><span id="res-discount-label">Персональна знижка (0%):</span> <span id="res-discount-val">-0 грн</span></div>
-                <div class="discount-line" id="res-bonus-row" style="display:none;"><span>Бонуси:</span> <span>-250 грн</span></div>
-            </div>
-            <div class="total-pay"><span>До оплати:</span> <span id="res-total">0 грн</span></div>
-            <button class="main-btn" onclick="confirmOrder()">Підтвердити запис</button>
+        <div class="form-group">
+            <label for="payment-method">Спосіб оплати</label>
+            <select id="payment-method">
+                <option value="cash">Готівкою в салоні</option>
+                <option value="card">Карткою онлайн LiqPay</option>
+            </select>
         </div>
-    </div>
+
+        <div class="order-summary" id="summary-box"></div>
+
+        <button type="submit" class="btn-confirm">Підтвердити запис</button>
+    </form>
+
+    <a href="cart.html" class="back-link">Повернутися до кошика</a>
 </div>
 
 <script>
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let isBonusUsed = false;
+    const checkoutForm = document.getElementById('checkout-form');
+    const submitButton = document.querySelector('.btn-confirm');
+    const summaryBox = document.getElementById('summary-box');
 
-    function renderCheckout() {
-        const listContainer = document.getElementById('checkout-services-list');
-        let subtotal = 0;
-        if (cart.length === 0) { listContainer.innerHTML = "<p>Кошик порожній</p>"; return; }
-        listContainer.innerHTML = cart.map(item => {
-            subtotal += item.price;
-            return `<div class="service-row"><span>• ${item.name}</span><span>${item.price} грн</span></div>`;
-        }).join('');
-
-        // Твоя логіка знижок
-        let p = 0;
-        if (subtotal > 10000) p = 15;
-        else if (subtotal >= 5001) p = 10;
-        else if (subtotal >= 2001) p = 7;
-        else if (subtotal > 0) p = 3;
-
-        let discMoney = subtotal * (p / 100);
-        let bonus = isBonusUsed ? 250 : 0;
-        let final = subtotal - discMoney - bonus;
-
-        document.getElementById('res-base').innerText = subtotal + " грн";
-        document.getElementById('discount-badge').innerText = p + "%";
-        document.getElementById('res-discount-label').innerText = `Персональна знижка (${p}%):`;
-        document.getElementById('res-discount-val').innerText = `-${Math.round(discMoney)} грн`;
-        document.getElementById('res-bonus-row').style.display = isBonusUsed ? 'flex' : 'none';
-        document.getElementById('res-total').innerText = Math.round(final) + " грн";
+    function getCart() {
+        return JSON.parse(localStorage.getItem('cart')) || [];
     }
 
-    function selectPayment(el) {
-        document.querySelectorAll('.pay-option').forEach(opt => opt.classList.remove('active'));
-        el.classList.add('active');
-        el.querySelector('input').checked = true;
+    function calculateDiscount(rawSum) {
+        if (rawSum > 10000) return 15;
+        if (rawSum >= 5001) return 10;
+        if (rawSum >= 2001) return 7;
+        if (rawSum > 0) return 3;
+        return 0;
     }
 
-    function toggleBonus() {
-        isBonusUsed = !isBonusUsed;
-        document.getElementById('bonus-btn').innerText = isBonusUsed ? "Скасувати" : "Застосувати";
-        renderCheckout();
+    function renderSummary() {
+        const cart = getCart();
+        const rawSum = cart.reduce((sum, item) => sum + (parseInt(item.price, 10) || 0), 0);
+        const discountPercent = calculateDiscount(rawSum);
+        const discountAmount = Math.round((rawSum * discountPercent) / 100);
+        const finalSum = Math.max(rawSum - discountAmount, 0);
+
+        if (cart.length === 0) {
+            summaryBox.innerHTML = '<p class="empty-cart">Кошик порожній</p>';
+            submitButton.disabled = true;
+            return 0;
+        }
+
+        summaryBox.innerHTML = `
+            <div class="summary-line">
+                <span>Кількість послуг:</span>
+                <span>${cart.length}</span>
+            </div>
+            <div class="summary-line">
+                <span>Сума без знижки:</span>
+                <span>${rawSum} грн</span>
+            </div>
+            <div class="summary-line">
+                <span>Знижка (${discountPercent}%):</span>
+                <span>-${discountAmount} грн</span>
+            </div>
+            <div class="summary-total">
+                <span>До сплати:</span>
+                <span>${finalSum} грн</span>
+            </div>
+        `;
+
+        submitButton.disabled = false;
+        return finalSum;
     }
 
-    async function confirmOrder() {
-    const btn = document.querySelector('.main-btn');
-    const paymentMethod = document.getElementById('pay_online').checked ? 'online' : 'offline';
-    
-    if (cart.length === 0) {
-        alert("Кошик порожній!");
-        return;
+    function submitLiqPayForm(data, signature) {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'https://www.liqpay.ua/api/3/checkout';
+        form.acceptCharset = 'utf-8';
+        form.referrerPolicy = 'no-referrer';
+
+        const dataInput = document.createElement('input');
+        dataInput.type = 'hidden';
+        dataInput.name = 'data';
+        dataInput.value = data;
+        form.appendChild(dataInput);
+
+        const signatureInput = document.createElement('input');
+        signatureInput.type = 'hidden';
+        signatureInput.name = 'signature';
+        signatureInput.value = signature;
+        form.appendChild(signatureInput);
+
+        document.body.appendChild(form);
+        form.submit();
     }
 
-    // Блокуємо кнопку, щоб не було подвійних кліків
-    btn.disabled = true;
-    btn.innerText = "Обробка...";
+    function submitServerPaymentForm(orderId, amount, description) {
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = '/pay-redirect';
 
-    try {
-        // 1. Отримуємо всі ID послуг з кошика в один масив
-        const serviceIds = cart.map(item => item.id);
-
-        // 2. Формуємо дані для відправки (тепер з масивом services)
-        const orderData = {
-            datetime: "2024-05-20 14:00:00", // Тут має бути дата, яку обрав юзер
-            services: serviceIds,            // ВІДПРАВЛЯЄМО ВЕСЬ МАСИВ ID
-            userId: 1,                       
-            masterId: 1,                     
-            paymentMethod: paymentMethod     
-        };
-
-        // 3. Відправляємо запит на сервер
-        const response = await fetch('/appointments', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(orderData)
+        [
+            ['orderId', orderId],
+            ['amount', amount],
+            ['description', description]
+        ].forEach(([name, value]) => {
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = name;
+            input.value = value;
+            form.appendChild(input);
         });
 
-        const result = await response.json();
-
-        if (result.success) {
-            localStorage.removeItem('cart'); // Очищуємо кошик
-
-            if (paymentMethod === 'online') {
-                // Перенаправляємо на генерацію форми LiqPay (бекенд підхопить суму по всім ID)
-                window.location.href = `/appointments/pay-page/${result.data.appointmentId}`;
-            } else {
-                window.location.href = 'success.html';
-            }
-        } else {
-            alert("Помилка: " + result.message);
-            btn.disabled = false;
-            btn.innerText = "Підтвердити запис";
-        }
-    } catch (error) {
-        console.error("Order error:", error);
-        alert("Сталася помилка при створенні запису.");
-        btn.disabled = false;
-        btn.innerText = "Підтвердити запис";
+        document.body.appendChild(form);
+        form.submit();
     }
-}
-    window.onload = renderCheckout;
+
+    async function confirmOrder(event) {
+        event.preventDefault();
+
+        const cart = getCart();
+        const amount = renderSummary();
+        const paymentMethod = document.getElementById('payment-method').value;
+        const customer = {
+            name: document.getElementById('cust-name').value.trim(),
+            phone: document.getElementById('cust-phone').value.trim(),
+            email: document.getElementById('cust-email').value.trim()
+        };
+
+        if (!customer.name || !customer.phone || !customer.email) {
+            alert('Введіть імʼя, номер телефону та email.');
+            return;
+        }
+
+        if (!customer.email.includes('@')) {
+            alert('Введіть коректний email для квитанції.');
+            return;
+        }
+
+        if (!cart.length || amount <= 0) {
+            alert('Кошик порожній.');
+            return;
+        }
+
+        if (paymentMethod === 'cash') {
+            alert('Запис створено. Оплата готівкою в салоні.');
+            localStorage.removeItem('cart');
+            window.location.href = 'history.html';
+            return;
+        }
+
+        try {
+            submitButton.disabled = true;
+            submitButton.innerText = 'Переходимо до оплати...';
+
+            const orderId = `BW_${Date.now()}`;
+            const description = `Beauty Whisper: ${cart.map((item) => item.name).join(', ')}`;
+
+            localStorage.setItem('pendingOrder', JSON.stringify({
+                orderId,
+                amount,
+                customer,
+                cart,
+                createdAt: new Date().toISOString()
+            }));
+
+            submitServerPaymentForm(orderId, amount, description);
+        } catch (error) {
+            console.error('Payment error:', error);
+            alert(`Помилка оплати: ${error.message}`);
+            submitButton.disabled = false;
+            submitButton.innerText = 'Підтвердити запис';
+        }
+    }
+
+    checkoutForm.addEventListener('submit', confirmOrder);
+    window.addEventListener('DOMContentLoaded', renderSummary);
 </script>
+
 </body>
 </html>

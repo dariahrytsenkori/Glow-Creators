@@ -399,4 +399,3 @@ app.get('/appointments/pay-page/:id', (req, res) => {
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`рџљЂ РЎРµСЂРІРµСЂ: http://localhost:${PORT}`));
-

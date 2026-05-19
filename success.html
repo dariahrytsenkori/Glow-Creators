@@ -48,9 +48,52 @@
     <div class="success-card">
         <div class="icon">✓</div>
         <h1>Готово!</h1>
-        <p>Ваш запис успішно підтверджено. Ми надішлемо вам підтвердження у SMS протягом 5 хвилин.</p>
+        <p id="receipt-status">Ваш запис успішно підтверджено. Надсилаємо квитанцію на email.</p>
         <a href="services.html" class="back-btn">Повернутись до послуг</a>
     </div>
+
+    <script>
+        async function sendReceipt() {
+            const status = document.getElementById('receipt-status');
+            const rawOrder = localStorage.getItem('pendingOrder');
+
+            if (!rawOrder) {
+                status.textContent = 'Ваш запис підтверджено. Дані для email-квитанції не знайдені.';
+                return;
+            }
+
+            try {
+                const order = JSON.parse(rawOrder);
+                const sentKey = `receiptSent:${order.orderId}`;
+
+                if (localStorage.getItem(sentKey)) {
+                    status.textContent = 'Ваш запис підтверджено. Квитанцію вже надіслано на email.';
+                    return;
+                }
+
+                const response = await fetch('/api/send-receipt', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ order })
+                });
+
+                const result = await response.json().catch(() => ({}));
+
+                if (!response.ok || !result.success) {
+                    throw new Error(result.message || 'Не вдалося надіслати квитанцію.');
+                }
+
+                localStorage.setItem(sentKey, 'true');
+                localStorage.removeItem('cart');
+                status.textContent = 'Ваш запис підтверджено. Квитанцію надіслано на email.';
+            } catch (error) {
+                console.error('Receipt send error:', error);
+                status.textContent = 'Ваш запис підтверджено, але квитанцію не вдалося надіслати автоматично.';
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', sendReceipt);
+    </script>
 
 </body>
 </html>

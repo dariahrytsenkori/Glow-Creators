@@ -316,13 +316,14 @@ app.post('/pay-redirect', (req, res) => {
         });
 
         res.set('Referrer-Policy', 'no-referrer');
+        res.set('Content-Type', 'text/html; charset=utf-8');
         res.send(`<!DOCTYPE html>
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="referrer" content="no-referrer">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>РџРµСЂРµС…С–Рґ РґРѕ LiqPay</title>
+    <title>Перехід до LiqPay</title>
     <style>
         body { font-family: Arial, sans-serif; display: grid; place-items: center; min-height: 100vh; margin: 0; color: #2c2c2c; }
         .box { text-align: center; max-width: 420px; padding: 24px; }
@@ -332,14 +333,19 @@ app.post('/pay-redirect', (req, res) => {
 </head>
 <body>
     <div class="box">
-        <h1>РџРµСЂРµС…С–Рґ РґРѕ РѕРїР»Р°С‚Рё</h1>
-        <p>РќР°С‚РёСЃРЅС–С‚СЊ РєРЅРѕРїРєСѓ, С‰РѕР± РІС–РґРєСЂРёС‚Рё Р·Р°С…РёС‰РµРЅСѓ СЃС‚РѕСЂС–РЅРєСѓ LiqPay.</p>
+        <h1>Перехід до оплати</h1>
+        <p>Зараз відкриється захищена сторінка LiqPay.</p>
         <form id="liqpay-form" method="POST" action="https://www.liqpay.ua/api/3/checkout" accept-charset="utf-8" referrerpolicy="no-referrer">
             <input type="hidden" name="data" value="${payment.data}">
             <input type="hidden" name="signature" value="${payment.signature}">
-            <button type="submit" autofocus>Р’С–РґРєСЂРёС‚Рё LiqPay</button>
+            <button type="submit" autofocus>Відкрити LiqPay</button>
         </form>
     </div>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('liqpay-form').submit();
+        });
+    </script>
 </body>
 </html>`);
     } catch (error) {

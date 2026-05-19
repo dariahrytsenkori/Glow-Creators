@@ -13,11 +13,13 @@ document.addEventListener('DOMContentLoaded', function () {
         {
             name: 'Анна',
             date: '5 липня',
+            avatar: 'img3/IMG_3440.PNG',
             message: 'Довго шукала свій салон і нарешті знайшла. Тут ідеально все.'
         },
         {
             name: 'Емілія',
             date: '16 серпня',
+            avatar: 'img3/IMG_2838.jpg',
             message: 'Справжній професіоналізм та естетика у кожній деталі.'
         }
     ];
@@ -41,13 +43,23 @@ document.addEventListener('DOMContentLoaded', function () {
             .replace(/'/g, '&#039;');
     }
 
+    function getAvatar(review, index) {
+        const name = String(review.name || '').toLowerCase();
+
+        if (review.avatar) return review.avatar;
+        if (name.includes('анна')) return 'img3/IMG_3440.PNG';
+        if (name.includes('емілі') || name.includes('еміл')) return 'img3/IMG_2838.jpg';
+
+        return `https://i.pravatar.cc/150?u=${encodeURIComponent(review.name || index)}`;
+    }
+
     function loadReviews() {
         const reviews = getReviews();
 
         container.innerHTML = reviews.map((review, index) => `
             <article class="review-card">
                 <div class="card-user">
-                    <img src="https://i.pravatar.cc/150?u=${encodeURIComponent(review.name || index)}" alt="">
+                    <img src="${getAvatar(review, index)}" alt="">
                     <div>
                         <span class="user-name">${escapeHtml(review.name)}</span>
                         <span class="user-date">${escapeHtml(review.date)}</span>

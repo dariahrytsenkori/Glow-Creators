@@ -8,16 +8,19 @@ document.addEventListener('DOMContentLoaded', function () {
         {
             name: 'Вікторія',
             date: '20 травня',
+            avatar: 'img3/photo_2026-05-19_17-40-35.jpg',
             message: 'Бездоганний сервіс та неймовірний затишок. Тепер це моє улюблене місце.'
         },
         {
             name: 'Анна',
             date: '5 липня',
+            avatar: 'img3/ChatGPT Image 19 трав. 2026 р., 12_55_54.png',
             message: 'Довго шукала свій салон і нарешті знайшла. Тут ідеально все.'
         },
         {
             name: 'Емілія',
             date: '16 серпня',
+            avatar: 'img3/ChatGPT Image 19 трав. 2026 р., 13_03_18.png',
             message: 'Справжній професіоналізм та естетика у кожній деталі.'
         }
     ];
@@ -41,13 +44,24 @@ document.addEventListener('DOMContentLoaded', function () {
             .replace(/'/g, '&#039;');
     }
 
+    function getAvatar(review, index) {
+        const name = String(review.name || '').toLowerCase();
+
+        if (review.avatar) return review.avatar;
+        if (name.includes('віктор')) return 'img3/photo_2026-05-19_17-40-35.jpg';
+        if (name.includes('анна')) return 'img3/ChatGPT Image 19 трав. 2026 р., 12_55_54.png';
+        if (name.includes('емілі') || name.includes('еміл')) return 'img3/ChatGPT Image 19 трав. 2026 р., 13_03_18.png';
+
+        return `https://i.pravatar.cc/150?u=${encodeURIComponent(review.name || index)}`;
+    }
+
     function loadReviews() {
         const reviews = getReviews();
 
         container.innerHTML = reviews.map((review, index) => `
             <article class="review-card">
                 <div class="card-user">
-                    <span class="review-avatar-placeholder" aria-hidden="true"></span>
+                    <img src="${escapeHtml(getAvatar(review, index))}" alt="">
                     <div>
                         <span class="user-name">${escapeHtml(review.name)}</span>
                         <span class="user-date">${escapeHtml(review.date)}</span>

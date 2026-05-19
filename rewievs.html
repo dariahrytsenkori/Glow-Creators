@@ -5,110 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beauty Whisper - Відгуки</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="site-layout.css">
+    <script src="site-layout.js" defer></script>
+    <script src="rewievs.js" defer></script>
 </head>
 <body>
-
-   <header class="main-header">
-    <div class="container">
-        <div class="logo">
-            <a href="index.html">
-                <img src="img/AC9417D1-98A2-48FC-B5FF-4F9E936E1B3A 1.png" alt="Beauty Whisper" class="header-logo">
-            </a>
-        </div>
-        <nav>
-            <ul class="nav-menu">
-                <li><a href="#">Головна</a></li>
-                <li><a href="#">Про нас</a></li>
-                <li><a href="#">Послуги</a></li>
-                <li><a href="#" class="active">Відгуки</a></li>
-                <li><a href="#">Контакти</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
     <main class="container">
         <section class="reviews-top">
             <div class="title-group">
                 <h1>відгуки</h1>
                 <div class="main-stars">★★★★★</div>
             </div>
-            <div class="slider-arrows">
-                <button class="arrow">←</button>
-                <button class="arrow">→</button>
+            <div class="slider-arrows" aria-hidden="true">
+                <button class="arrow" type="button">←</button>
+                <button class="arrow" type="button">→</button>
             </div>
         </section>
 
-        <section class="reviews-grid" id="reviews-container">
-            </section>
+        <section class="reviews-grid" id="reviews-container"></section>
 
         <section class="form-wrapper">
             <div class="review-form-card">
                 <h2>Залишити відгук</h2>
                 <form id="reviewForm">
-    <input type="text" id="userName" placeholder="Ваше ім'я" required>
-    
-    <textarea id="userText" placeholder="Ваш відгук" required></textarea>
-    
-    <button type="submit" class="publish-btn">ОПУБЛІКУВАТИ</button>
-</form>
-
-<div class="reviews-grid" id="reviewsContainer">
-    </div>
+                    <input type="text" id="userName" placeholder="Ваше ім'я" required>
+                    <textarea id="userText" placeholder="Ваш відгук" required></textarea>
+                    <button type="submit" class="publish-btn">Опублікувати</button>
+                </form>
             </div>
         </section>
     </main>
-
-    <div class="reviews-grid" id="reviewsContainer">
-    </div>
-
-<div class="reviews-grid" id="reviewsContainer">
-    </div>
-
-<footer class="main-footer">
-    <div class="container footer-content">
-        <div class="footer-text-side">
-            <h2 class="footer-title">Спілкуймося мовою краси</h2>
-            <p class="footer-description">
-                Ваш простір для відновлення, краси та натхнення. Завітайте до нас та пориньте у світ спокою.
-            </p>
-            
-            <div class="footer-info-grid">
-                <div class="footer-col">
-                    <h4>МЕНЮ</h4>
-                    <ul>
-                        <li>Про нас</li>
-                        <li>Послуги</li>
-                        <li>Майстри</li>
-                        <li>Магазин</li>
-                        <li>Відгуки</li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>ГРАФІК РОБОТИ</h4>
-                    <p>Пн-Пт: 09:00 - 21:00</p>
-                    <p>Сб: 10:00 - 19:00</p>
-                    <p>Нд: 10:00 - 17:00</p>
-                </div>
-                <div class="footer-col">
-                    <h4>КОНТАКТИ</h4>
-                    <p>📍 вул. Велика Васильківська, 100, Київ</p>
-                    <p>📞 +380 44 123 45 67</p>
-                    <p>✉️ info@beautywhisper.com</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-image-side">
-            <img src="img/A1E8C885-DA27-46F7-B264-31212F5F3BBE.PNG" alt="Beauty Whisper" class="footer-main-img">
-            <div class="footer-logo-text">BEAUTY WHISPER</div>
-        </div>
-    </div>
-    <div class="footer-bottom">
-        <p>© 2024 Beauty Whisper. Всі Права Захищено.</p>
-    </div>
-</footer>
-
-    <script src="script.js"></script>
 </body>
 </html>

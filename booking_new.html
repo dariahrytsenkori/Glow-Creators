@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Запис на процедуру - Beauty Whisper</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="site-layout.css">
+    <script src="site-layout.js" defer></script>
     <style>
         :root {
             --main-color: #612a26; /* Твій фірмовий коричневий */
@@ -33,7 +35,7 @@
         .nav-menu a:hover, .nav-menu a.active { color: var(--main-color); font-weight: 700; }
         
         /* Стиль для неактивної Головної */
-        .nav-menu a[href="#"] { cursor: default; opacity: 0.6; }
+        .nav-menu a.active { cursor: default; opacity: 0.9; }
 
         /* КАРТКА ЗАПИСУ */
         .booking-card {
@@ -139,7 +141,7 @@
     <header class="header">
         <nav>
             <ul class="nav-menu">
-                <li><a href="#">Головна</a></li> <li><a href="services.html">Послуги</a></li>
+                <li><a href="main_page.html">Головна</a></li> <li><a href="services.html">Послуги</a></li>
                 <li><a href="cart.html">Кошик</a></li>
                 <li><a href="booking.html" class="active">Запис</a></li>
             </ul>

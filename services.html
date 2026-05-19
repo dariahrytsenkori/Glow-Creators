@@ -328,12 +328,22 @@ fbq('track', 'PageView');
         `).join('');
     }
  
-    function addToCart(name, price) {
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.push({ name, price, date: "12 Червня, 14:00", master: "Емілія Савченко" });
-        localStorage.setItem('cart', JSON.stringify(cart));
-        alert('Додано в кошик!');
-    }
+    function addToCart(serviceName, price) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    const newItem = {
+        id: Date.now(),
+        name: serviceName,
+        price: parseInt(price),
+        date: "Дата уточнюється", // Можна додати вибір дати пізніше
+        master: "Майстер не обраний"
+    };
+
+    cart.push(newItem);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    alert(`${serviceName} додано до кошика!`);
+    window.location.href = 'cart.html';
+}
 </script>
 </body>
 </html>

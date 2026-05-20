@@ -57,6 +57,21 @@ body {
     border-radius: 50%;            /* Робить коло круглим */
     background: linear-gradient(90deg, #EEE4E0 0%, #F7F1EF 50%, #EEE4E0 100%); /* Градієнт */
     position: relative;            /* Треба для корони */
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.avatar-circle img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 50%;
+    object-fit: cover;
+    opacity: 0;
+}
+
+.avatar-circle img.has-avatar {
+    opacity: 1;
 }
 
 .crown-icon{

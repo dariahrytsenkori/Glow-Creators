@@ -52,12 +52,15 @@ db.connect(err => {
     else console.log('вњ… Р‘Р°Р·Р° РїС–РґРєР»СЋС‡РµРЅР° СѓСЃРїС–С€РЅРѕ!');
 });
 
+const mailUser = process.env.EMAIL_USER || 'beautywhisper101@gmail.com';
+const mailPass = process.env.EMAIL_PASS || 'pbferurqcfpapuxe';
+
 // РќР°Р»Р°С€С‚СѓРІР°РЅРЅСЏ РїРѕС€С‚Рё (С‚СЂР°РЅСЃРїРѕСЂС‚РµСЂ Р·Р°Р»РёС€Р°С”С‚СЊСЃСЏ Р±РµР· Р·РјС–РЅ)
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'beautywhisper101@gmail.com', 
-        pass: 'pbferurqcfpapuxe' 
+        user: mailUser,
+        pass: mailPass
     },
     tls: { rejectUnauthorized: false }
 });
@@ -80,6 +83,40 @@ function escapeHtml(value) {
 function formatMoney(value) {
     const amount = Number(value);
     return `${Number.isFinite(amount) ? amount.toFixed(2) : '0.00'} UAH`;
+}
+
+function generateVerifyToken() {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+function buildWelcomeEmailHtml(name, verifyToken) {
+    const safeName = escapeHtml(name || 'клієнте');
+    const safeToken = escapeHtml(verifyToken);
+
+    return `
+        <div style="margin:0;padding:0;background:#f6f2ef;font-family:Arial,sans-serif;color:#2c2c2c;">
+            <div style="max-width:560px;margin:0 auto;padding:28px 16px;">
+                <div style="background:#fff;border-radius:16px;padding:28px;border:1px solid #eadfdc;">
+                    <div style="font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#8b5e57;font-weight:700;">Beauty Whisper</div>
+                    <h1 style="margin:10px 0 12px;font-size:24px;color:#612a26;">Вітаємо, ${safeName}!</h1>
+                    <p style="margin:0 0 18px;color:#555;line-height:1.5;">Ваш акаунт успішно створено.</p>
+                    <p style="margin:0 0 10px;color:#555;line-height:1.5;">Код підтвердження пошти:</p>
+                    <div style="display:inline-block;margin:0 0 18px;padding:12px 18px;background:#fdfaf9;border:1px solid #eadfdc;border-radius:10px;font-size:24px;font-weight:700;letter-spacing:4px;color:#612a26;">${safeToken}</div>
+                    <p style="margin:0;color:#777;font-size:13px;line-height:1.5;">Якщо ви не реєструвалися в Beauty Whisper, просто проігноруйте цей лист.</p>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function sendWelcomeEmail({ email, name, verifyToken }) {
+    return transporter.sendMail({
+        from: `"Beauty Whisper" <${mailUser}>`,
+        to: email,
+        subject: 'Підтвердження реєстрації Beauty Whisper',
+        text: `Вітаємо, ${name || 'клієнте'}! Ваш акаунт успішно створено. Код підтвердження пошти: ${verifyToken}`,
+        html: buildWelcomeEmailHtml(name, verifyToken)
+    });
 }
 
 function buildReceiptHtml(order) {
@@ -135,7 +172,7 @@ app.post('/api/send-receipt', (req, res) => {
     }
 
     transporter.sendMail({
-        from: '"Beauty Whisper" <beautywhisper101@gmail.com>',
+        from: `"Beauty Whisper" <${mailUser}>`,
         to: email,
         subject: `РљРІРёС‚Р°РЅС†С–СЏ Beauty Whisper ${order.orderId || ''}`.trim(),
         html: buildReceiptHtml(order)
@@ -151,37 +188,43 @@ app.post('/api/send-receipt', (req, res) => {
 
 app.post('/api/register', (req, res) => {
     const { name, surname, email, phone, password } = req.body;
-    const sql = 'INSERT INTO users (name, surname, email, phone, password) VALUES (?, ?, ?, ?, ?)';
+    const cleanEmail = String(email || '').trim().toLowerCase();
+    const verifyToken = generateVerifyToken();
+    const sql = 'INSERT INTO users (name, surname, email, phone, password, verify_token) VALUES (?, ?, ?, ?, ?, ?)';
+
+    if (!cleanEmail || !cleanEmail.includes('@')) {
+        return res.status(400).json({ success: false, message: 'Некоректна електронна пошта' });
+    }
     
-    db.query(sql, [name, surname, email, phone, password], (err, result) => {
+    db.query(sql, [name, surname, cleanEmail, phone, password, verifyToken], async (err, result) => {
         if (err) {
             console.error('РџРѕРјРёР»РєР° Р‘Р”:', err);
-            return res.status(500).json({ success: false, message: 'РџРѕРјРёР»РєР° Р±Р°Р·Рё РґР°РЅРёС…' });
+            const duplicateEmail = err.code === 'ER_DUP_ENTRY';
+            return res.status(duplicateEmail ? 409 : 500).json({
+                success: false,
+                message: duplicateEmail ? 'Користувач з такою поштою вже існує' : 'Помилка бази даних'
+            });
         }
 
-        const mailOptions = {
-            from: '"Beauty Whisper вњЁ" <beautywhisper101@gmail.com>',
-            to: email,
-            subject: 'Р›Р°СЃРєР°РІРѕ РїСЂРѕСЃРёРјРѕ! вњЁ',
-            html: `<h2>РџСЂРёРІС–С‚, ${name}! Р’Рё СѓСЃРїС–С€РЅРѕ Р·Р°СЂРµС”СЃС‚СЂРѕРІР°РЅС–.</h2>`
-        };
-
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.log('РџРѕРјРёР»РєР° РїРѕС€С‚Рё (Р°Р»Рµ РІ Р±Р°Р·С– РІСЃРµ РѕРє):', error.message);
-            } else {
-                console.log('Р›РёСЃС‚ РЅР°РґС–СЃР»Р°РЅРѕ!');
-            }
-        });
+        try {
+            const info = await sendWelcomeEmail({ email: cleanEmail, name, verifyToken });
+            console.log('Registration email sent:', info.messageId || cleanEmail);
+        } catch (error) {
+            console.error('Registration email error:', error.message);
+            return res.status(500).json({
+                success: false,
+                message: 'Користувача створено, але лист не надіслано. Перевірте EMAIL_USER та EMAIL_PASS у bd.env.'
+            });
+        }
 
         return res.json({
             success: true,
-            message: 'РЈСЃРїС–С€РЅР° СЂРµС”СЃС‚СЂР°С†С–СЏ!',
+            message: 'Успішна реєстрація! Лист надіслано на пошту.',
             user: {
                 id: result.insertId,
                 name,
                 surname,
-                email,
+                email: cleanEmail,
                 phone
             }
         });

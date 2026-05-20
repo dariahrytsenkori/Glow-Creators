@@ -52,14 +52,13 @@
         </div>
     </div>
 
-    <div class="popup-overlay" id="subscriptionPopup">
+    <div class="popup-overlay" id="registrationSuccessPopup" aria-hidden="true">
         <div class="popup-box">
-            <button class="close-popup" id="closePopupBtn">&times;</button>
-            <h3>Дякуємо за реєстрацію! ✨</h3>
-            <p>Хочете першими дізнаватися про знижки та секретні акції нашого салону?</p>
+            <button class="close-popup" id="closePopupBtn" type="button" aria-label="Закрити">&times;</button>
+            <h3>Реєстрація успішна</h3>
+            <p>Акаунт створено. Лист із підтвердженням надіслано на вашу пошту.</p>
             <div class="popup-actions">
-                <button class="btn-subscribe" id="subscribeYesBtn">Так, підписатися</button>
-                <button class="btn-cancel" id="subscribeNoBtn">Ні, дякую</button>
+                <button class="btn-subscribe" id="continueBtn" type="button">Продовжити</button>
             </div>
         </div>
     </div>
@@ -71,6 +70,8 @@
     const existingUser = localStorage.getItem('currentUser');
     const loginLink = document.getElementById('loginLink');
     const authNote = document.getElementById('authNote');
+    const successPopup = document.getElementById('registrationSuccessPopup');
+    const submitBtn = document.querySelector('.submit-btn');
 
     if (existingUser) {
         window.location.href = safeReturnTo;
@@ -114,6 +115,9 @@
         if (!isValid) return;
 
         try {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Реєструємо...';
+
             const response = await fetch('/api/register', { // Твій правильний шлях
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -125,24 +129,24 @@
             if (data.success) {
                 const registeredUser = data.user || { name, surname, email, phone };
                 localStorage.setItem('currentUser', JSON.stringify(registeredUser));
-                window.location.href = safeReturnTo;
+                successPopup.classList.add('active');
+                successPopup.setAttribute('aria-hidden', 'false');
             } else {
                 alert('Помилка: ' + data.message);
             }
         } catch (error) {
             alert('Сервер не відповідає. Перевірте консоль!');
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Зареєструватися';
         }
     });
 
     // 3. Логіка кнопок у попапі
-    const goToLogin = () => window.location.href = `login.html?return=${encodeURIComponent(safeReturnTo)}`;
+    const continueAfterRegistration = () => window.location.href = safeReturnTo;
 
-    document.getElementById('closePopupBtn').addEventListener('click', goToLogin);
-    document.getElementById('subscribeNoBtn').addEventListener('click', goToLogin);
-    document.getElementById('subscribeYesBtn').addEventListener('click', function() {
-        alert('Дякуємо! Ви підписані. Лист вже летить!');
-        goToLogin();
-    });
+    document.getElementById('closePopupBtn').addEventListener('click', continueAfterRegistration);
+    document.getElementById('continueBtn').addEventListener('click', continueAfterRegistration);
     </script>
 </body>
 </html>

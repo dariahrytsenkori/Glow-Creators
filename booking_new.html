@@ -135,6 +135,7 @@
 
         .footer-small { font-size: 10px; color: #aaa; text-align: center; margin-top: 15px; line-height: 1.4; }
     </style>
+    <script src="i18n.js" defer></script>
 </head>
 <body>
 
@@ -160,9 +161,9 @@
             <form id="bookingForm">
                 <label class="label-text">Оберіть категорію</label>
                 <div class="category-group">
-                    <button type="button" class="category-btn active">Волосся</button>
-                    <button type="button" class="category-btn">Обличчя</button>
-                    <button type="button" class="category-btn">Нігті</button>
+                    <button type="button" class="category-btn active" data-category="Волосся">Волосся</button>
+                    <button type="button" class="category-btn" data-category="Обличчя">Обличчя</button>
+                    <button type="button" class="category-btn" data-category="Нігті">Нігті</button>
                 </div>
 
                 <label class="label-text">Послуга</label>
@@ -350,7 +351,7 @@
         btn.onclick = function() {
             document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-            updateLists(this.innerText);
+            updateLists(this.dataset.category);
         };
     });
 </script>

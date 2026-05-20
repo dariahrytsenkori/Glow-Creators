@@ -10,6 +10,7 @@
     const navItems = [
         { href: 'main_page.html', label: 'Головна', match: ['main_page.html', 'index.html'] },
         { href: 'portfolio.html', label: 'Про нас', match: ['portfolio.html'] },
+        { href: 'team.html', label: 'Наша команда', match: ['team.html'] },
         { href: 'services.html', label: 'Послуги', match: ['services.html'] },
         { href: 'rewievs.html', label: 'Відгуки', match: ['rewievs.html', 'reviews.html'] },
         { href: '#contacts', label: 'Контакти', match: [] }
@@ -67,8 +68,8 @@
                                 <h3>Меню</h3>
                                 <ul>
                                     <li><a href="portfolio.html">Про нас</a></li>
+                                    <li><a href="team.html">Наша команда</a></li>
                                     <li><a href="services.html">Послуги</a></li>
-                                    <li><a href="team.html">Майстри</a></li>
                                     <li><a href="rewievs.html">Відгуки</a></li>
                                 </ul>
                             </div>

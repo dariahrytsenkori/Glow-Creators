@@ -262,7 +262,7 @@
     // 4. ОТРИМАННЯ ЗАПИСІВ (ДЛЯ НИЖНЬОГО СПИСКУ)
     async function fetchBookings() {
         try {
-            const res = await fetch('http://localhost:3001/api/booking');
+            const res = await fetch('/api/booking');
             if (!res.ok) throw new Error('Помилка мережі');
             const data = await res.json();
             const container = document.getElementById('listContainer');
@@ -290,7 +290,7 @@
     window.cancelBooking = async function(id) {
         if (confirm('Ви впевнені, що хочете скасувати запис?')) {
             try {
-                const res = await fetch(`http://localhost:3001/api/booking/${id}`, { method: 'DELETE' });
+                const res = await fetch(`/api/booking/${id}`, { method: 'DELETE' });
                 if (res.ok) fetchBookings();
             } catch (e) { alert("Помилка при видаленні"); }
         }
@@ -311,7 +311,7 @@
         };
 
         try {
-            const res = await fetch('http://localhost:3001/api/booking', {
+            const res = await fetch('/api/booking', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload)

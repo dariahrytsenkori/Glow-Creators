@@ -339,6 +339,26 @@ body {
     margin-left: -7px;
 }
 
+.avatar-circle,
+.photo-box {
+    overflow: hidden;
+}
+
+.avatar-circle img,
+.photo-box img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.avatar-circle img.has-avatar,
+.photo-box img.has-avatar {
+    opacity: 1;
+}
+
 .photo-section {
     display: flex;
     flex-direction: row;

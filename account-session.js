@@ -7,7 +7,8 @@
             phone: user.phone || '',
             city: user.city || '',
             dob: user.dob || '',
-            bonusPoints: Number(user.bonusPoints) || 0
+            bonusPoints: Number(user.bonusPoints) || 0,
+            avatarUrl: user.avatarUrl || ''
         };
     }
 
@@ -53,6 +54,19 @@
         setText('profileEmail', user.email);
         setText('profilePhone', user.phone);
         setText('profileCity', user.city);
+
+        const avatarUrl = user.avatarUrl || '';
+        const sidebarAvatar = document.getElementById('sidebarAvatar');
+        if (sidebarAvatar) {
+            sidebarAvatar.src = avatarUrl || 'default.jpg';
+            sidebarAvatar.classList.toggle('has-avatar', Boolean(avatarUrl));
+        }
+
+        const profilePhoto = document.getElementById('profilePhoto');
+        if (profilePhoto) {
+            profilePhoto.src = avatarUrl || 'default.jpg';
+            profilePhoto.classList.toggle('has-avatar', Boolean(avatarUrl));
+        }
 
         const bonusPoints = document.getElementById('bonusPoints');
         if (bonusPoints) bonusPoints.textContent = user.bonusPoints;

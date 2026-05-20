@@ -184,11 +184,12 @@ fbq('track', 'PageView');
 
                 <div class="photo-section">
                     <div class="photo-box">
-                        <img id="profilePhoto" src="default.jpg" style="opacity: 0;">
+                        <img id="profilePhoto" src="default.jpg" alt="Фото профілю">
                     </div>
                     <div class="photo-text">
                         <h3>Фото профілю</h3>
-                        <button class="upload-btn">Завантажити фото</button>
+                        <button class="upload-btn" type="button" id="uploadPhotoBtn">Завантажити фото</button>
+                        <input type="file" id="avatarInput" accept="image/png,image/jpeg,image/webp" hidden>
                     </div>
                 </div>
 
@@ -272,7 +273,8 @@ fbq('track', 'PageView');
             email: user.email || '',
             phone: user.phone || '',
             city: user.city || 'Не вказано',
-            bonusPoints: Number(user.bonusPoints) || 0
+            bonusPoints: Number(user.bonusPoints) || 0,
+            avatarUrl: user.avatarUrl || ''
         };
     }
 
@@ -311,6 +313,7 @@ fbq('track', 'PageView');
         // Оновлюємо ім'я в бордовому сайдбарі
         document.getElementById('sidebarName').innerText = userData.firstName;
         document.getElementById('sidebarSurname').innerText = userData.lastName;
+        applyAvatar(userData.avatarUrl);
 
         // Оновлюємо бонуси
         document.getElementById('bonusPoints').innerText = userData.bonusPoints;
@@ -349,7 +352,8 @@ fbq('track', 'PageView');
             email: document.getElementById('inputEmail').value,
             phone: document.getElementById('inputPhone').value,
             city: document.getElementById('inputCity').value,
-            bonusPoints: userData.bonusPoints // Бонуси юзер сам не міняє
+            bonusPoints: userData.bonusPoints, // Бонуси юзер сам не міняє
+            avatarUrl: userData.avatarUrl
         };
 
         // ВІДПРАВЛЯЄМО НА БЕКЕНД:
@@ -379,11 +383,72 @@ fbq('track', 'PageView');
             email: updatedData.email,
             phone: updatedData.phone,
             city: updatedData.city,
-            bonusPoints: updatedData.bonusPoints
+            bonusPoints: updatedData.bonusPoints,
+            avatarUrl: updatedData.avatarUrl
         }));
         renderProfile();
         closeEditModal();
     }
+
+    function applyAvatar(avatarUrl) {
+        const imageUrl = avatarUrl || 'default.jpg';
+        const profilePhoto = document.getElementById('profilePhoto');
+        const sidebarAvatar = document.getElementById('sidebarAvatar');
+
+        if (profilePhoto) {
+            profilePhoto.src = imageUrl;
+            profilePhoto.classList.toggle('has-avatar', Boolean(avatarUrl));
+        }
+
+        if (sidebarAvatar) {
+            sidebarAvatar.src = imageUrl;
+            sidebarAvatar.classList.toggle('has-avatar', Boolean(avatarUrl));
+        }
+    }
+
+    function persistCurrentUser() {
+        localStorage.setItem('currentUser', JSON.stringify({
+            id: userData.id,
+            name: userData.firstName,
+            surname: userData.lastName,
+            dob: userData.dob,
+            email: userData.email,
+            phone: userData.phone,
+            city: userData.city,
+            bonusPoints: userData.bonusPoints,
+            avatarUrl: userData.avatarUrl
+        }));
+    }
+
+    document.getElementById('uploadPhotoBtn').addEventListener('click', function() {
+        document.getElementById('avatarInput').click();
+    });
+
+    document.getElementById('avatarInput').addEventListener('change', function(event) {
+        const file = event.target.files && event.target.files[0];
+        if (!file) return;
+
+        if (!file.type.startsWith('image/')) {
+            alert('Оберіть файл зображення.');
+            event.target.value = '';
+            return;
+        }
+
+        if (file.size > 2 * 1024 * 1024) {
+            alert('Фото завелике. Оберіть зображення до 2 МБ.');
+            event.target.value = '';
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(loadEvent) {
+            userData.avatarUrl = loadEvent.target.result;
+            persistCurrentUser();
+            applyAvatar(userData.avatarUrl);
+        };
+        reader.readAsDataURL(file);
+    });
+
     function logoutUser() {
     // 1. Очищаємо всі збережені дані користувача з пам'яті браузера
     // Це зітре інформацію про те, що людина була авторизована
